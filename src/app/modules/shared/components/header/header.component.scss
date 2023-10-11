@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+ul {
+  span {
+    position: relative;
+    padding: 4px 0;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #fff;
+      transform-origin: right center;
+    transform: scale3d(0,1,1);
+    transition: transform .3s cubic-bezier(.38,.005,.215,1);
+    }
+
+    &:hover::before, &:focus::before{
+        transform-origin: left center;
+        transform: scale3d(1,1,1);
+    }
+  }
+}

@@ -25,7 +25,6 @@
         "plugin:import/typescript",
         "plugin:optimize-regex/all",
         "plugin:sonarjs/recommended",
-        "plugin:prettier/recommended",
         "plugin:promise/recommended",
         "plugin:regexp/recommended",
         "plugin:security/recommended",

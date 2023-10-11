@@ -2,3 +2,19 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'onest';
+  src: url('./assets/fonts/Onest/Onest-VariableFont_wght.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    overflow-x: hidden;
+    font-family: 'onest';
+  }

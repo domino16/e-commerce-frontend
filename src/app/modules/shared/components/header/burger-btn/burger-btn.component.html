@@ -1,0 +1,15 @@
+<button
+(click)="toggleMenu()"
+(keydown)="toggleMenu()"
+class="transition ease-[cubic-bezier(.38,.005,.215,1)] duration-[600ms] bg-header-button-background hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
+[ngClass]="{ active: isMenuOpen }">
+<div class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="cross">
+  <span></span>
+  <span></span>
+</div>
+</button>

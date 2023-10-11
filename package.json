@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run e-commerce-app:serve-ssr",
+    "dev:ssr": "ng run e-commerce-app:serve-ssr --open",
     "serve:ssr": "node dist/e-commerce-app/server/main.js",
     "build:ssr": "ng build && ng run e-commerce-app:server",
     "prerender": "ng run e-commerce-app:prerender",
@@ -30,9 +30,11 @@
     "@ngrx/component-store": "16.2.0",
     "@ngrx/store": "^16.2.0",
     "@nguniversal/express-engine": "^16.2.0",
+    "@types/gsap": "^3.0.0",
     "eslint-plugin-angular": "^4.1.0",
     "eslint-plugin-ngrx": "2.1.4",
     "express": "^4.15.2",
+    "gsap": "^3.12.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.13.3"
@@ -88,7 +90,7 @@
     "stylelint-selector-bem-pattern": "3.0.1",
     "tailwindcss": "^3.3.3",
     "ts-loader": "9.4.4",
-    "typescript": "^5.2.2",
+    "typescript": "^5.1.6",
     "webpack-bundle-analyzer": "4.9.1"
   }
 }
