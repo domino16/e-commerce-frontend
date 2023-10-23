@@ -1,1 +1,17 @@
-<app-header class="bg-slate-700 "></app-header>
+<app-header 
+  (menuStatus)="onIsMenuChangedStatusChange($event)"
+  (openCartEvent)="openCart()"
+  class="bg-slate-700" appHeaderInitAnimation></app-header>
+<!-- fixed header visible on scroll up -->
+<app-header
+  (menuStatus)="onIsMenuChangedStatusChange($event)"
+  (openCartEvent)="openCart()"
+  class="bg-slate-700 fixed"
+  appStickyReactiveHeader
+  [isMenuOpen]="isMenuOpen"
+  [ngStyle]="{'background-color': !isMenuOpen ? '#f4f4f4': 'transparent'}"
+  ></app-header>
+<app-modal-menu *ngIf="isMenuOpen"></app-modal-menu>
+<app-modal-cart (closeCartEvent)="closeCart()" *ngIf="isCartOpen"></app-modal-cart>
+<app-landing-page></app-landing-page>
+<div class="w-full h-[1500px] bg-[#fff]"></div>

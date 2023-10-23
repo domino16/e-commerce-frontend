@@ -1,6 +1,22 @@
-:host{
+:host {
   display: flex;
   flex-direction: column;
-  background-color: darkcyan;
   min-height: 100vh;
+}
+
+app-header {
+  transform: translateY(-100%);
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: transform 0.5s;
+}
+
+.visible {
+  transform: translateY(0%);
 }

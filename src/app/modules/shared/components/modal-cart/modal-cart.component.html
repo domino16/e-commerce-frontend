@@ -1,0 +1,54 @@
+<div
+  class="cart flex flex-col bg-pure-white w-full h-full lg:w-5/12 rounded-l-[30px] lg:rounded-l-[50px]">
+  <div class="cart-header flex w-full justify-between items-center py-[30px] pr-[20px] pl-[40px]">
+    <svg
+      class="stroke-black"
+      width="20px"
+      height="20px"
+      viewBox="0 0 21 20"
+      fill="none"
+      stroke-width="2px"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.6,18.4H4.4L1.8,7.9h17.5L16.6,18.4L16.6,18.4z" fill="none" />
+      <path d="M7.2,5V2h6.4v3" fill="none" />
+    </svg>
+    <p class="text-[18px] font-bold">Your cart(4)</p>
+    <button
+      class="transition ease-[cubic-bezier(.38,.005,.215,1)] duration-[600ms] bg-white hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
+      (click)="closeCart()">
+      <svg
+        class="font-bold"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="20"
+        height="20"
+        viewBox="0 0 50 50">
+        <path
+          d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-lines w-full h-full px-[40px] overflow-auto">
+    <app-cart-inner></app-cart-inner>
+    <app-cart-inner></app-cart-inner>
+    <app-cart-inner></app-cart-inner>
+    <app-cart-inner></app-cart-inner>
+  </div>
+  <div class="cart-footer py-[20px] px-[40px] relative">
+    <div class="cart-shade"></div>
+    <div
+      class="flex justify-between py-[20px] border-t-black border-t-[2px] text-[18px] leading-[1]">
+      <span>Subtotal</span>
+      <span>$422.59 CAD</span>
+    </div>
+    <button
+      class="flex justify-center items-center w-full rounded-[4.375rem] bg-black text-white text-[20px] font-bold h-[60px] px-7"
+      ><span class="pb-[2px] leading-[1]">proceed to checkout</span></button
+    >
+    <p class="flex justify-center text-[14px] font-light mt-[20px] leading-[1]">
+      Taxes and shipping will be calculated at checkout
+    </p>
+  </div>
+</div>
+<div class="background absolute inset-0 bg-overlay-background -z-[1]"></div>
