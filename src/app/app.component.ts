@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ModalCartComponent } from './modules/shared/components/modal-cart/modal-cart.component';
 import { StickyReactiveHeaderDirective } from './modules/shared/directives/sticky-reactive-header.directive';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
-import { HeaderInitAnimationDirective } from './modules/shared/directives/animations/gsap/header-init-animation.directive';
+import { HeaderInitAnimationDirective } from './modules/shared/directives/animations/gsap/landing-page/header-init-animation.directive';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
