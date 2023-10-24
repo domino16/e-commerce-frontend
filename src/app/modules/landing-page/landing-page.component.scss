@@ -1,12 +1,15 @@
 .tile {
-  span {
-    position: absolute;
-    right: 45px;
-    opacity: 0;
-    transform: translate3d(-20px, 0, 0);
-    transition:
-      opacity 0.3s cubic-bezier(0.38, 0.005, 0.215, 1),
-      transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+  button {
+    transition: width .3s;
+    span {
+      position: absolute;
+      right: 45px;
+      opacity: 0;
+      transform: translate3d(-20px, 0, 0);
+      transition:
+        opacity 0.3s cubic-bezier(0.38, 0.005, 0.215, 1),
+        transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
+    }
   }
 
   img {
@@ -117,3 +120,36 @@
     background-color: #fff;
   }
 }
+
+// #############################################
+
+// .tile {
+//   transition: transform 1s, transform-origin 2s;
+//   transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
+//   p {
+//     transition:  .9s;
+//     transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
+//   }
+
+//   img {
+//     transition: all 1s;
+//     transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
+//   }
+// }
+
+// .tile:hover {
+//     transform-origin: bottom center;
+//   transform: scale(50%);
+
+//   p {
+//     transform: translateY(-250%)  scale(1.5);
+//   }
+
+//   button {
+//     transform: translateX(150%);
+//   }
+
+//   img {
+//     transform: translate(30%, 15%) scale(200%);
+//   }
+// }

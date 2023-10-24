@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SlideUpDirective } from '../shared/directives/gsap/slide-up.directive';
-import { TilesAnimationDirective } from '../shared/directives/gsap/tiles-animation.directive';
+import { SlideUpDirective } from '../shared/directives/animations/gsap/slide-up.directive';
+import { TilesAnimationDirective } from '../shared/directives/animations/gsap/tiles-animation.directive';
 
 interface tiles {
   title: string;
@@ -16,6 +16,9 @@ interface tiles {
   imports: [CommonModule, SlideUpDirective, TilesAnimationDirective],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
+  animations:[
+    
+  ]
 })
 export class LandingPageComponent {
   tilesArray: Array<tiles> = [

@@ -17,14 +17,14 @@ export class SlideUpDirective implements AfterViewInit {
     });
     gsap.timeline().from(this.el.nativeElement.children, {
       opacity: 0,
-      rotationX: 50,
+      rotationX: 90,
       stagger: 0.06,
-      duration: 0.5,
-      ease: 'none',
+      duration: 1,
+      ease: 'power1',
     });
     setTimeout(() => {
       animate.kill();
       animate.smoothChildTiming
-    }, 1500);
+    }, 1200);
   }
 }
