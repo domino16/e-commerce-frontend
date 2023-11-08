@@ -1,15 +1,19 @@
 <button
-(click)="toggleMenu()"
-(keydown)="toggleMenu()"
-class="transition ease-[cubic-bezier(.38,.005,.215,1)] duration-[600ms] bg-pure-white hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
-[ngClass]="{ 'active':isMenuOpen}">
-<div class="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-<div class="cross">
-  <span></span>
-  <span></span>
-</div>
+  (click)="toggleMenu()"
+  (keydown)="toggleMenu()"
+  class="transition ease-[cubic-bezier(.38,.005,.215,1)] duration-[600ms] bg-pure-white hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
+  [ngClass]="{
+    active: isMenuOpen$ | async,
+    'menu-buttons-background-white': isMenuTextWhite && (isMenuOpen$ | async) === false,
+    'buttons-background-in-sticky-header': isStickyHeader && (isMenuOpen$ | async) === false
+  }">
+  <div class="hamburger">
+    <span class="black-span" [ngClass]="{ 'white-span': isMenuTextWhite && !isStickyHeader}"></span>
+    <span class="black-span" [ngClass]="{ 'white-span': isMenuTextWhite && !isStickyHeader}"></span>
+    <span class="black-span" [ngClass]="{ 'white-span': isMenuTextWhite && !isStickyHeader}"></span>
+  </div>
+  <div class="cross">
+    <span></span>
+    <span></span>
+  </div>
 </button>

@@ -1,13 +1,13 @@
+@import '../../../../styles/variables';
 :host {
   display: flex;
   height: 100px;
   justify-content: space-between;
   padding: 20px;
-  color: black;
   font-size: 18px;
   font-weight: 600;
-  z-index: 3;
 }
+
 
 ul {
   span {
@@ -23,7 +23,7 @@ ul {
       background-color:currentColor;
       transform-origin: right center;
     transform: scale3d(0,1,1);
-    transition: transform .3s cubic-bezier(.38,.005,.215,1);
+    transition: transform .3s theme('transitionTimingFunction.in-out-expo');
     }
 
     &:hover::before, &:focus::before{
@@ -31,4 +31,31 @@ ul {
         transform: scale3d(1,1,1);
     }
   }
+
 }
+
+.menu-active-btn{
+background-color: rgba(0, 0, 0, .3);
+}
+
+
+.menu-active-btn:hover{
+  background-color: rgba(0, 0, 0, .5 );
+  }
+  
+.menu-buttons-background-white{
+background-color: theme('colors.header-button-background');
+} 
+
+.menu-buttons-background-white:hover{
+  background-color:  theme('colors.header-button-background-hover')
+  } 
+
+  .buttons-background-in-sticky-header {
+    background-color: theme('colors.white');
+  }
+  
+  .buttons-background-in-sticky-header:hover {
+    background-color: theme('colors.header-button-background-in-sticky-header');
+  }
+  

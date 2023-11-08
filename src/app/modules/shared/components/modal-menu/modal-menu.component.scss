@@ -1,16 +1,17 @@
 :host {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   inset: 0;
-  color: black;
+  color: theme('colors.black');
   z-index: 2;
   @media (min-width: 1024px) {
     flex-direction: row;
   }
 }
 
-.nav {
+.nav-inner {
   clip-path: inset(0% 0% 0% 0% round 0px 0px 30px 30px);
 
   @media (min-width: 1024px) {

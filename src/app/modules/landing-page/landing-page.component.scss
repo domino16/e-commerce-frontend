@@ -1,4 +1,5 @@
 .tile {
+
   button {
     transition: width .3s;
     span {
@@ -37,82 +38,82 @@
 }
 
 .tile:nth-child(1) {
-  background-color: #fffbdc;
-  color: #ff9500;
+  background-color: theme('colors.catagory.child1.background');
+  color: theme('colors.catagory.child1.text');
 
   button {
-    background-color: #ff9500;
+    background-color: theme('colors.catagory.child1.text');
   }
 
   &:hover > .background {
-    background-color: #ff9500;
+    background-color: theme('colors.catagory.child1.text');
   }
 }
 
 .tile:nth-child(2) {
-  background-color: #e3e3e3;
-  color: #000;
+  background-color: theme('colors.catagory.child2.background');
+  color: theme('colors.catagory.child2.text');
 
   button {
-    background-color: #000;
+    background-color: theme('colors.catagory.child2.text');
   }
 
   &:hover > .background {
-    background-color: #000;
+    background-color:theme('colors.catagory.child2.text');
   }
 }
 
 .tile:nth-child(3) {
-  background-color: #fce4e5;
-  color: #b41924;
+  background-color: theme('colors.catagory.child3.background');
+  color: theme('colors.catagory.child3.text');
 
   button {
-    background-color: #b41924;
+    background-color: theme('colors.catagory.child3.text');
   }
 
   &:hover > .background {
-    background-color: #b41924;
+    background-color: theme('colors.catagory.child3.text');
   }
 }
 
 .tile:nth-child(4) {
-  background-color: #e1efe3;
-  color: #235c1b;
+  background-color: theme('colors.catagory.child4.background');
+  color: theme('colors.catagory.child4.text');
 
   button {
-    background-color: #235c1b;
+    background-color: theme('colors.catagory.child4.text');
   }
 
   &:hover > .background {
-    background-color: #235c1b;
+    background-color: theme('colors.catagory.child4.text');
   }
 }
 
 .tile:nth-child(5) {
-  background-color: #fff5e9;
-  color: #9b5b37;
+  background-color: theme('colors.catagory.child5.background');
+  color: theme('colors.catagory.child5.text');
 
   button {
-    background-color: #9b5b37;
+    background-color: theme('colors.catagory.child5.text');
   }
 
   &:hover > .background {
-    background-color: #9b5b37;
+    background-color: theme('colors.catagory.child5.text');
   }
 }
 
 .tile:nth-child(6) {
-  background-color: #000;
-  color: #fff;
+  background-color: theme('colors.catagory.child6.text');
+  color: theme('colors.catagory.child6.background');
 
   button {
-    background-color: #fff;
+    background-color: theme('colors.catagory.child6.background');
     span {
-      color: #000;
+      color: theme('colors.catagory.child6.text');
     }
 
     svg {
-      stroke: #000;
+      stroke: theme('colors.catagory.child6.text');
     }
   }
 
@@ -120,36 +121,3 @@
     background-color: #fff;
   }
 }
-
-// #############################################
-
-// .tile {
-//   transition: transform 1s, transform-origin 2s;
-//   transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
-//   p {
-//     transition:  .9s;
-//     transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
-//   }
-
-//   img {
-//     transition: all 1s;
-//     transition-timing-function: cubic-bezier(0.38, 0.005, 0.215, 1);
-//   }
-// }
-
-// .tile:hover {
-//     transform-origin: bottom center;
-//   transform: scale(50%);
-
-//   p {
-//     transform: translateY(-250%)  scale(1.5);
-//   }
-
-//   button {
-//     transform: translateX(150%);
-//   }
-
-//   img {
-//     transform: translate(30%, 15%) scale(200%);
-//   }
-// }

@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angul
 import { CommonModule } from '@angular/common';
 import { CartInnerComponent } from './cart-inner/cart-inner.component';
 
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-modal-cart',

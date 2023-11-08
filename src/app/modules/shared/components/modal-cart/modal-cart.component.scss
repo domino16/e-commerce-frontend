@@ -16,7 +16,7 @@
         width: 100%;
         height: 50px;
         pointer-events: none;
-        background: linear-gradient(0deg,#F4F4F4 10%,transparent);
+        background: linear-gradient(0deg,theme('colors.pure-white') 10%,transparent);
         z-index: 1;
     }
 }

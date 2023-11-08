@@ -32,7 +32,7 @@ export class StickyReactiveHeaderDirective {
         }
       }
     else {
-      if (this.isMenuvisible) {
+      if (this.isMenuvisible ) {
         this.renderer.removeClass(this.el.nativeElement, 'visible');
         this.isMenuvisible = false;
 

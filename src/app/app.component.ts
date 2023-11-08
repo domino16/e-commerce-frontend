@@ -1,47 +1,41 @@
-import { Component, ChangeDetectionStrategy} from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject} from '@angular/core';
 import { HeaderComponent } from './modules/shared/components/header/header.component';
 import { ModalMenuComponent } from './modules/shared/components/modal-menu/modal-menu.component';
 import { CommonModule } from '@angular/common';
 import { ModalCartComponent } from './modules/shared/components/modal-cart/modal-cart.component';
-import { StickyReactiveHeaderDirective } from './modules/shared/directives/sticky-reactive-header.directive';
+import { StickyReactiveHeaderDirective } from './modules/shared/directives/animations/header/sticky-reactive-header.directive';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
-import { HeaderInitAnimationDirective } from './modules/shared/directives/animations/gsap/landing-page/header-init-animation.directive';
+import { cartAnimationStateTrigger } from './animations/cart-animations'
+import { menuAnimationStateTrigger, onOpenMenuOpenStickyHeaderAnimationTrigger } from './animations/menu-animations'
+import { LayoutService } from './core/services/layout.service';
+import { Observable } from 'rxjs';
+import { headerInitAnimationTrigger } from './animations/header-init-animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, HeaderComponent, ModalMenuComponent, ModalCartComponent, StickyReactiveHeaderDirective, LandingPageComponent, HeaderInitAnimationDirective],
+  imports: [CommonModule, HeaderComponent, ModalMenuComponent, ModalCartComponent, StickyReactiveHeaderDirective, LandingPageComponent, RouterOutlet],
   standalone: true,
+  animations: [cartAnimationStateTrigger, menuAnimationStateTrigger, onOpenMenuOpenStickyHeaderAnimationTrigger, headerInitAnimationTrigger ]
 })
 export class AppComponent{
-  isMenuOpen: boolean = false;
-  isCartOpen: boolean = false;
+  private readonly layoutService = inject(LayoutService)
 
+  isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$
+  isCartOpen$:  Observable<boolean> = this.layoutService.isCartOpen$
 
-  onIsMenuChangedStatusChange(value: boolean): void {
-    this.isMenuOpen = value;
-    value ? this.addOverflowHidden() : this.removeOverflowHidden()
-  }
+ 
 
   openCart(){
-    this.isMenuOpen = false;
-    this.isCartOpen = true;
-    this.addOverflowHidden()
+    this.layoutService.openCart();
   }
 
   closeCart(){
-    this.isCartOpen = false
-    this.removeOverflowHidden()
+    this.layoutService.closeCart();
   }
 
- addOverflowHidden(){
-  document.body.style.overflow = 'hidden';
- }
-
- removeOverflowHidden(){
-  document.body.style.overflow = 'visible';
- }
 
 }

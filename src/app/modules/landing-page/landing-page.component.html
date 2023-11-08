@@ -1,17 +1,17 @@
 <h2
-  class="flex flex-col leading-[1] px-[20px] md:px-[60px] pt-20 md:pt-[clamp(calc(0.0625rem*80),calc(120/14.4*1vw),calc(0.0625rem*120))] text-[48px] text-black font-bold md:text-[clamp(48px,120/2000*100vw,120px)]"
+  class="flex flex-col leading-[1] px-[20px] md:px-[60px] pt-20 md:pt-h2-landing-page-padding-top text-[48px] text-black font-bold md:text-[clamp(48px,120/2000*100vw,120px)]"
   appSlideUp>
   <span> our energy</span>
-  <span class="text-[#949494]">infusions</span>
+  <span class="text-link-hover">infusions</span>
 </h2>
 
 <div
   class="tiles mt-[80px] px-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-hidden"
   appTilesAnimation>
   <div
-    class="tile relative p-[clamp(16px,calc(30/14.4*1vw),30px)2.5rem] aspect-[9/8] rounded-[50px] cursor-pointer overflow-hidden"
+    class="tile relative p-tile-spacing aspect-[9/8] rounded-[50px] cursor-pointer overflow-hidden"
     *ngFor="let til of tilesArray; trackBy: tilesTrackBy">
-    <p class="relative text-[clamp(40px,55/2000*100vw,55px)] font-bold z-[1]">{{ til.title }}</p>
+    <p class="relative text-tile-text-size font-bold z-[1]">{{ til.title }}</p>
     <button
       class="absolute bottom-5 right-5 rounded-[2.5rem] w-[40px] h-[40px] inline-flex items-center justify-end px-[11px] overflow-hidden z-[1]">
       <span class="text-white font-semibold">discover</span>

@@ -1,30 +1,74 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BurgerBtnComponent } from './burger-btn/burger-btn.component';
+import { LayoutService } from 'src/app/core/services/layout.service';
+import { combineLatest, Observable } from 'rxjs';
+import {
+  onMenuOpenAnimateHeaderBackgroundTrigger,
+  onMenuOpenAnimateNavLinksTrigger,
+} from 'src/app/animations/menu-animations';
+import { Store } from '@ngrx/store';
+import { selectUrl } from 'src/app/router.selectors';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, RouterModule, BurgerBtnComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  animations: [onMenuOpenAnimateHeaderBackgroundTrigger, onMenuOpenAnimateNavLinksTrigger],
 })
-export class HeaderComponent{
-isMenuOpen = false;
+export class HeaderComponent implements OnInit {
+  private readonly layoutService = inject(LayoutService);
+  private readonly store = inject(Store);
 
-@Output() menuStatus = new EventEmitter<boolean>();
+  @Input() isStickyHeader: boolean = false;
 
-@Output() openCartEvent = new EventEmitter();
+  headerTextColor: '#fff' | '#000' = '#000';
+  isMenuTextWhite: boolean = false;
+  isMobile$: Observable<boolean> = this.layoutService.isMobile$;
+  isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
 
-  onIsMenuChangedStatusChange(value: boolean): void {
-    this.isMenuOpen=value;
-    this.menuStatus.emit(this.isMenuOpen);
+  //routes when header text color is white
+  whiteRoutes = ['/shop',];
+
+  ngOnInit(): void {
+    combineLatest([
+      this.isMenuOpen$,
+      this.isMobile$,
+      this.store.select(selectUrl)]
+    ).pipe(untilDestroyed(this)).subscribe(([isMenuOpen, isMobile, route])=>{
+  this.setHeaderTextColor(route, isMobile, isMenuOpen);
+    })
   }
 
-  openCart(){
-    this.openCartEvent.emit()
+  openCart() {
+    this.layoutService.openCart();
   }
 
+  setHeaderTextColor(route: string, isMobile:boolean, isMenuOpen:boolean) {
+    if (this.isStickyHeader) {
+        if (isMenuOpen && !isMobile) {
+          this.headerTextColor = '#fff';
+          this.isMenuTextWhite = true;
+        } else {
+          this.headerTextColor = '#000';
+          this.isMenuTextWhite = false;
+        }
+      
+    } else {
+      if (this.whiteRoutes.includes(route)) {
+        this.headerTextColor = '#fff';
+        this.isMenuTextWhite = true;
+      } else {
+        this.headerTextColor = '#000';
+        this.isMenuTextWhite = false;
+      }
+    }
+  }
 }

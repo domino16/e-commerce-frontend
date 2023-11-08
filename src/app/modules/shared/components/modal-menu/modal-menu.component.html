@@ -1,93 +1,96 @@
 <div
-  class="nav flex flex-col justify-between bg-white h-screen w-full lg:w-2/3 pt-[70px] pb-[30px] px-[20px] sm:pt-[100px] sm:px-[60px] z-[2]" appModalMenuAnimation>
-  <ul class="text-5xl md:text-[clamp(48px,120/2000*100vw,120px)] font-semibold pt-[30px]">
-    <li class="py-[6px]">
-      <a
-        routerLink="/"
-        class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-        ><span>products</span></a
-      >
-    </li>
-    <li class="py-[6px]">
-      <a
-        routerLink="/"
-        class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-        ><span>explore</span></a
-      >
-    </li>
-    <li class="py-[6px]">
-      <a
-        routerLink="/"
-        class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-        ><span>community</span></a
-      >
-    </li>
-  </ul>
-  <div
-    class="grid grid-cols-2 text-[clamp(20px,24/1400*100vw,24px);] font-semibold leading-snug pt-10 lg:pt-[clamp(calc(0.0625rem*60),calc(80/14.4*1vw),calc(0.0625rem*80))]">
-    <ul>
-      <li>
+  class="nav flex h-screen w-full lg:w-2/3 z-[2] whitespace-nowrap">
+  <div class="nav-inner flex flex-col justify-between bg-white w-full h-full" [ngClass]="{'nav-inner-desktop': (isMobile$ | async) === false, 'nav-inner-mobile' : isMobile$ | async}" >
+    <ul
+      class="nav-main text-5xl md:text-modal-menu-nav-links-size font-semibold  px-[20px] sm:px-[60px] pt-[100px]  sm:pt-[130px]">
+      <li class="py-[6px]">
         <a
           routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>about me</span></a
+          class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+          ><span>products</span></a
         >
       </li>
-      <li>
+      <li class="py-[6px]">
         <a
           routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>retailers</span></a
+          class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+          ><span>explore</span></a
         >
       </li>
-      <li>
+      <li class="py-[6px]">
         <a
           routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>wholesale</span></a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>faq</span></a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>contact</span></a
+          class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+          ><span>community</span></a
         >
       </li>
     </ul>
-    <ul class="flex flex-col justify-end">
-      <li>
-        <a
-          routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>cart</span></a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="/"
-          class="hover:text-modal-menu-link-hover transition-[color] duration-300 ease-[cubic-bezier(.38,.005,.215,1)]"
-          ><span>contact</span></a
-        >
-      </li>
-    </ul>
+    <div
+      class="nav-second grid grid-cols-2 gap-[30vw] text-modal-menu-second-nav-links-size font-semibold leading-snug pt-10 px-[20px] sm:px-[60px] lg:pt-[clamp(calc(0.0625rem*60),calc(80/14.4*1vw),calc(0.0625rem*80))] pb-[30px]">
+      <ul>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>about me</span></a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>retailers</span></a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>wholesale</span></a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>faq</span></a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>contact</span></a
+          >
+        </li>
+      </ul>
+      <ul class="flex flex-col justify-end">
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>cart</span></a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
+            ><span>contact</span></a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 <div
-  class="sticky top-0 flex flex-col lg:w-[calc(33.3333%+50px)] lg:justify-end lg:ml-[-50px] z-[1]">
+  class="sticky top-0 flex flex-col lg:w-[calc(33.3333%+50px)] lg:justify-end lg:ml-[-50px] z-[1]" >
   <img
-    class="hidden lg:block absolute top-0 left-0 h-full w-full object-cover"
+    class="hidden lg:block absolute bottom-0 right-0 h-full w-full object-cover"
     src="../../../../../assets/coffee-break-2589688_1280.jpg"
     alt="cup of coffee" />
   <div
-    class="bg-pure-white py-10 px-5 sm:px-[60px] lg:px-10 font-bold text-xl lg:text-[clamp(20px,24/1400*100vw,24px)] rounded-t-[30px] lg:rounded-[50px] lg:flex lg:flex-col lg:justify-between lg:min-h-[17.5rem] lg:ml-[50px] z-0">
+    class="box bg-pure-white py-10 px-5 sm:px-[60px] lg:px-10 font-bold text-xl lg:text-modal-menu-second-nav-links-size rounded-t-[30px] lg:rounded-[50px] lg:flex lg:flex-col lg:justify-between lg:min-h-[17.5rem] lg:ml-[50px] z-0">
     <p class="mb-[30px] max-w-[16rem] leading-[1]">Subscribe and never miss Mate Libre again</p>
     <div class="flex">
       <a
@@ -98,4 +101,4 @@
     </div>
   </div>
 </div>
-<div class="absolute inset-0 w-full h-full bg-opacity-[1] bg-overlay-background"></div>
+<div class="background absolute inset-0 w-full h-full bg-opacity-[1] bg-overlay-background"></div>

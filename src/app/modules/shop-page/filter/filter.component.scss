@@ -1,0 +1,11 @@
+:host {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 3;
+    overscroll-behavior-block:contain;
+  }
+  
+  
+  

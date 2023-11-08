@@ -1,0 +1,7 @@
+<div class="hero-image relative top-0 right-0 w-full h-screen -z-[1]">
+    <img class="w-full h-full translate-y-[-100px]  object-cover" src="../../../assets/set-coffee-beans-ground-coffee-shape-world-map-top-view-dark-background_187166-18617.avif" alt="">
+    <div class="shadow-background absolute inset-0 bg-hero-background translate-y-[-100px]"></div>
+    <h3 class="text-white font-extrabold text-[120px] z-10 absolute bottom-[150px] left-0 max-w-[70vw] p-16">Lorem ipsum dolor, sit </h3>
+</div>
+<button (click)="openFilterMenu()">filter</button>
+<app-filter *ngIf="isFilterMenuOpen" (closeFilterMenuEmitter)="closeFilterMenu()" ></app-filter>
