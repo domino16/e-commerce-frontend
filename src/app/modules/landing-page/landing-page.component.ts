@@ -23,23 +23,23 @@ interface tiles {
 export class LandingPageComponent {
   tilesArray: Array<tiles> = [
     {
-      title: 'passion',
+      title: 'coffee beans',
       subTitle: 'new and improved recipe',
-      image: '',
+      image: '../../../assets/landing_tiles_image/coffee-package.png',
     },
-    { title: 'original', subTitle: '', image: '' },
+    { title: 'ice coffee', subTitle: 'zero sugar', image: '../../../assets/landing_tiles_image/ice-latte.png' },
     {
-      title: 'rose & hibiscus',
+      title: 'coffee capsule',
       subTitle: '',
-      image: '',
+      image: '../../../assets/landing_tiles_image/kapsułka.png',
     },
-    { title: 'mint & lime', subTitle: '', image: '' },
+    { title: 'mugs', subTitle: '', image: '../../../assets/landing_tiles_image/kubek.png' },
     {
-      title: 'ginger',
+      title: 'yerba mate',
       subTitle: 'zero sugar',
-      image: '',
+      image: '../../../assets/landing_tiles_image/yerba.png',
     },
-    { title: 'mate & vodka', subTitle: '', image: '' },
+    { title: 'clothes', subTitle: '', image: '../../../assets/landing_tiles_image/koszulka biała.png' },
   ];
 
   tilesTrackBy(index: number, item: tiles) {
