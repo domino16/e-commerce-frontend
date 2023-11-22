@@ -1,0 +1,37 @@
+:host{
+    position: relative;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 14rem;
+    padding: 5px 10px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    color: theme('colors.black');
+    border-radius: 10px;
+    background-position: 247px 0.5px;
+    outline: none;
+    box-shadow: 0 0 3px rgba(80,80,100,0.45);
+}
+select::-ms-expand{
+    display: none;
+}
+select:hover{
+    border: 1px solid theme('colors.black');
+    
+}
+select option{
+    letter-spacing: 1.2px;
+    font-weight: 400;
+    font-size: 1rem;
+    
+}
+
+
+.selected{
+    display: none;
+}

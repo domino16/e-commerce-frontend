@@ -1,11 +1,30 @@
 :host {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: flex-start;
-    z-index: 3;
-    overscroll-behavior-block:contain;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 3;
+  overscroll-behavior-block: contain;
+}
+
+input {
+  display: none;
+}
+
+input:checked + label {
+  position: relative;
+  font-weight: bold;
+  background-color: theme('colors.header-button-background-in-sticky-header');
+  border-radius: 15px;;
+  padding: 2px 5px;
+  &::before{
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  background-color: theme('colors.header-button-background-hover');
+  border-radius: 100%;
   }
-  
-  
-  
+}

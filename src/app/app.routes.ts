@@ -10,7 +10,8 @@ export const routes: Routes= [
   {
     path: 'shop',
     component:ShopPageComponent,
-  }
+  },
+  
   // {
   //   path: 'todos',
   //   loadComponent: () => import('./todos/todos.component'),

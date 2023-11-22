@@ -39,7 +39,7 @@ export class ProductService {
 
   getAllProductList(thePage: number, 
     thePageSize: number): Observable<Product[]> {
-    const searchUrl = `${this.baseUrl}` + `&page=${thePage}&size=${thePageSize}`;
+    const searchUrl = `${this.baseUrl}?` + `&page=${thePage}&size=${thePageSize}`;
     return this.getProducts(searchUrl);
   }
 
