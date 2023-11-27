@@ -48,7 +48,6 @@ button {
       &.black-span {
         &:before,
         &:after {
-          
           background-color: theme('colors.black');
         }
       }
@@ -82,7 +81,6 @@ button {
       background-color: theme('colors.black');
       transform: translateY(50%) rotate(45deg) scaleX(0);
       transition: transform ease 400ms;
-    
 
       &:last-child {
         transform: translateY(-50%) rotate(-45deg) scaleX(0);
@@ -119,7 +117,7 @@ button {
 }
 
 .menu-buttons-background-white:hover {
-  background-color: theme('colors.header-button-background-hover');
+  background-color: theme('colors.secondary');
 }
 
 .buttons-background-in-sticky-header {

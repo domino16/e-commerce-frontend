@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlideUpDirective } from '../shared/directives/animations/gsap/landing-page/slide-up.directive';
 import { TilesAnimationDirective } from '../shared/directives/animations/gsap/landing-page/tiles-animation.directive';
@@ -20,7 +20,7 @@ interface tiles {
     
   ]
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
   tilesArray: Array<tiles> = [
     {
       title: 'coffee beans',
@@ -44,5 +44,14 @@ export class LandingPageComponent {
 
   tilesTrackBy(index: number, item: tiles) {
     return item;
+  }
+
+  ngOnInit(): void {
+    this.scrollTop()
+    
+  }
+  
+  scrollTop(){
+    window.scrollTo({top:0})
   }
 }

@@ -35,24 +35,24 @@ export class HeaderComponent implements OnInit {
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
 
   //routes when header text color is white
-  whiteRoutes = ['/shop',];
+  whiteRoutes = ['/shop'];
 
   ngOnInit(): void {
-    combineLatest([
-      this.isMenuOpen$,
-      this.isMobile$,
-      this.store.select(selectUrl)]
-    ).pipe(untilDestroyed(this)).subscribe(([isMenuOpen, isMobile, route])=>{
-  this.setHeaderTextColor(route, isMobile, isMenuOpen);
-    })
+    combineLatest([this.isMenuOpen$, this.isMobile$, this.store.select(selectUrl)])
+      .pipe(untilDestroyed(this))
+      .subscribe(([isMenuOpen, isMobile, route]) => {
+        this.setHeaderTextColor(route, isMobile, isMenuOpen);
+      });
   }
 
   openCart() {
     this.layoutService.openCart();
   }
 
-  setHeaderTextColor(route: string, isMobile:boolean, isMenuOpen:boolean) {
-    if (this.isStickyHeader) {
+  setHeaderTextColor(route: string, isMobile: boolean, isMenuOpen: boolean) {
+    if (route) {
+      const hasStringStartingWithWhiteRoutes = this.whiteRoutes.some(str => route.startsWith(str));
+      if (this.isStickyHeader) {
         if (isMenuOpen && !isMobile) {
           this.headerTextColor = '#fff';
           this.isMenuTextWhite = true;
@@ -60,14 +60,14 @@ export class HeaderComponent implements OnInit {
           this.headerTextColor = '#000';
           this.isMenuTextWhite = false;
         }
-      
-    } else {
-      if (this.whiteRoutes.includes(route)) {
-        this.headerTextColor = '#fff';
-        this.isMenuTextWhite = true;
       } else {
-        this.headerTextColor = '#000';
-        this.isMenuTextWhite = false;
+        if (hasStringStartingWithWhiteRoutes) {
+          this.headerTextColor = '#fff';
+          this.isMenuTextWhite = true;
+        } else {
+          this.headerTextColor = '#000';
+          this.isMenuTextWhite = false;
+        }
       }
     }
   }

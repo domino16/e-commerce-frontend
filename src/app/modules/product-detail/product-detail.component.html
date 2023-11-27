@@ -1,0 +1,6 @@
+<ng-container *ngIf="product$ | async as product">
+<img class="w-96 h-96" src="{{product.imageUrl}}" alt="">
+<p>{{product.name}}</p>
+<p>{{product.description}}</p>
+
+</ng-container>

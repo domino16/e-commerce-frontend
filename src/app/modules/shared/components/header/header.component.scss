@@ -8,7 +8,6 @@
   font-weight: 600;
 }
 
-
 ul {
   span {
     position: relative;
@@ -20,42 +19,40 @@ ul {
       left: 0;
       right: 0;
       height: 2px;
-      background-color:currentColor;
+      background-color: currentColor;
       transform-origin: right center;
-    transform: scale3d(0,1,1);
-    transition: transform .3s theme('transitionTimingFunction.in-out-expo');
+      transform: scale3d(0, 1, 1);
+      transition: transform 0.3s theme('transitionTimingFunction.in-out-expo');
     }
 
-    &:hover::before, &:focus::before{
-        transform-origin: left center;
-        transform: scale3d(1,1,1);
+    &:hover::before,
+    &:focus::before {
+      transform-origin: left center;
+      transform: scale3d(1, 1, 1);
     }
   }
-
 }
 
-.menu-active-btn{
-background-color: rgba(0, 0, 0, .3);
+.menu-active-btn {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
+.menu-active-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-.menu-active-btn:hover{
-  background-color: rgba(0, 0, 0, .5 );
-  }
-  
-.menu-buttons-background-white{
-background-color: theme('colors.header-button-background');
-} 
+.menu-buttons-background-white {
+  background-color: theme('colors.header-button-background');
+}
 
-.menu-buttons-background-white:hover{
-  background-color:  theme('colors.header-button-background-hover')
-  } 
+.menu-buttons-background-white:hover {
+  background-color: theme('colors.secondary');
+}
 
-  .buttons-background-in-sticky-header {
-    background-color: theme('colors.white');
-  }
-  
-  .buttons-background-in-sticky-header:hover {
-    background-color: theme('colors.header-button-background-in-sticky-header');
-  }
-  
+.buttons-background-in-sticky-header {
+  background-color: theme('colors.white');
+}
+
+.buttons-background-in-sticky-header:hover {
+  background-color: theme('colors.header-button-background-in-sticky-header');
+}
