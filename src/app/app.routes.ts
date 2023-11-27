@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './modules/landing-page/landing-page.component';
 import { ShopPageComponent } from './modules/shop-page/shop-page.component';
+import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 export const routes: Routes= [
   {
@@ -11,6 +12,10 @@ export const routes: Routes= [
     path: 'shop',
     component:ShopPageComponent,
   },
+  {
+    path: 'shop/:id',
+    component:ProductDetailComponent,
+  }
   
   // {
   //   path: 'todos',
