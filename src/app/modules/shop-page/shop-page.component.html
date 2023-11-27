@@ -18,11 +18,14 @@
 
 <app-filter @openCloseFilterMenuAnimation
   *ngIf="isFilterMenuOpen | async"
-  (filteredProductsObservableEmitter)="filterProduct($event)"></app-filter>
+ ></app-filter>
+
 <div class="products inline-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mx-7">
-  <div class="cursor-pointer" *ngFor="let product of products$ | async">
+  <a routerLink="/shop/{{product.id}}" *ngFor="let product of products$ | async">
     <img class="bg-[#efefef]" [src]="product.imageUrl" alt="product image" />
     <p>{{ product.name }}</p>
     <p>{{ product.unitPrice }}$</p>
-  </div>
+  </a>
 </div>
+
+<app-pagination [pageData]="page"></app-pagination>

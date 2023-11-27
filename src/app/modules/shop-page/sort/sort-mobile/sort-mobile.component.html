@@ -1,45 +1,47 @@
-<button class=" p-3" (click)="openSortMenu()">
-
-    <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512" fill="#000"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
+<button class="p-3" (click)="openSortMenu()">
+  <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512" fill="#000">
+    <path
+      d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z" />
+  </svg>
 </button>
-<div @openCloseSortMobileMenuAnimation *ngIf="isOpen" class="fixed inset-0 flex items-end">
+<div @openCloseSortMobileMenuAnimation *ngIf="isOpen" class="fixed inset-0 flex items-end z-[10]">
   <div
     class="sort-menu relative flex flex-col bg-pure-white w-full sm:w-6/12 md:w-5/12 xl:w-4/12 rounded-t-[30px] px-9">
     <div class="cart-header flex justify-end w-full pt-[30px] pr-[10px]">
-        <button
-          class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
-          (click)="closeSortMenu()">
-          <svg
-            class="font-bold"
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="20"
-            height="20"
-            viewBox="0 0 50 50">
-            <path
-              d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
-          </svg>
-        </button>
-      </div>
+      <button
+        class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-secondary rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
+        (click)="closeSortMenu()">
+        <svg
+          class="font-bold"
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="20"
+          height="20"
+          viewBox="0 0 50 50">
+          <path
+            d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
+        </svg>
+      </button>
+    </div>
 
     <form [formGroup]="sortForm" class="flex flex-col text-lg pb-20">
-        <legend class="font-bold text-xl border-b-[1px] border-header-button-background-hover mb-1">
-          Choose sort type:
-        </legend>
-    
-        <input type="radio" id="relevance" formControlName="sort" value="" />
-        <label for="relevance">Relevance</label>
-    
-        <input type="radio" id="highPrice" formControlName="sort" value="1" />
-        <label for="highPrice">Price High to Low</label>
-    
-        <input type="radio" id="lowPrice" formControlName="sort" value="2" />
-        <label for="lowPrice">Price Low to High</label>
- 
-        <input type="radio" id="name" formControlName="sort" value="3" />
-        <label for="name">Product Name</label>
-      </form>
-</div>
+      <legend class="font-bold text-xl border-b-[1px] border-secondary mb-1">
+        Choose sort type:
+      </legend>
+
+      <input type="radio" id="relevance" formControlName="sort" value="" />
+      <label for="relevance">Relevance</label>
+
+      <input type="radio" id="highPrice" formControlName="sort" value="unitPrice,desc" />
+      <label for="highPrice">Price High to Low</label>
+
+      <input type="radio" id="lowPrice" formControlName="sort" value="unitPrice" />
+      <label for="lowPrice">Price Low to High</label>
+
+      <input type="radio" id="name" formControlName="sort" value="name" />
+      <label for="name">Product Name</label>
+    </form>
+  </div>
   <div class="background absolute inset-0 bg-overlay-background -z-[1]"></div>
 </div>

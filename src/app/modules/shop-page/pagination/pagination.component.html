@@ -1,0 +1,5 @@
+<ul class="page">
+  <li *ngFor="let pageNum of pageNumbers" class="page__numbers" (click)="setPage(pageNum)" (keyup)="setPage(pageNum)" [ngClass]="{'active': pageNum === currentPage}">
+    {{ pageNum + 1 }}
+  </li>
+</ul>

@@ -4,11 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { sortMenuMobileAnimationStateTrigger } from 'src/app/animations/filter-menu-animations';
 
 import { LayoutService } from 'src/app/core/services/layout.service';
-import { Store } from '@ngrx/store';
-import { filterActions } from '../../filter/+state/filter.actions';
-import { selectSortType } from '../../filter/+state/filter.selectors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { take } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -22,7 +19,8 @@ import { take } from 'rxjs';
 })
 export class SortMobileComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
-  private readonly store = inject(Store);
+  private readonly router = inject(Router)
+  private readonly route = inject(ActivatedRoute)
   isOpen: boolean = false;
 
   sortForm = new FormGroup({
@@ -36,14 +34,21 @@ export class SortMobileComponent implements OnInit {
   }
 
   loadCurrentSettings() {
-    this.store
-      .select(selectSortType)
-      .pipe(untilDestroyed(this), take(1))
-      .subscribe(sortId => this.sortForm.get('sort')?.patchValue(sortId));
+    let currentSort = this.route.snapshot.queryParamMap.get('sort');
+    currentSort ? currentSort : currentSort = ''
+    this.sortForm.get('sort')?.patchValue(currentSort);
   }
 
   sort() {
-    this.store.dispatch(filterActions.setSortType({ sortType: this.sortForm.value.sort }));
+    const queryParams: { sort: string, page: undefined } | undefined = {
+      sort: this.sortForm.value.sort,
+      page: undefined
+    };
+    this.router.navigate([], {relativeTo: this.route,
+      queryParams:queryParams.sort === '' ? {sort:undefined, page: undefined} : queryParams,
+      queryParamsHandling: 'merge'
+    } );
+    this.closeSortMenu();
   }
 
   openSortMenu() {

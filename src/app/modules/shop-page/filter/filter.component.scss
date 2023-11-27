@@ -15,16 +15,16 @@ input:checked + label {
   position: relative;
   font-weight: bold;
   background-color: theme('colors.header-button-background-in-sticky-header');
-  border-radius: 15px;;
+  border-radius: 15px;
   padding: 2px 5px;
-  &::before{
-  content: '';
-  position: absolute;
-  left: -12px;
-  top: 13px;
-  width: 6px;
-  height: 6px;
-  background-color: theme('colors.header-button-background-hover');
-  border-radius: 100%;
+  &::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    background-color: theme('colors.secondary');
+    border-radius: 100%;
   }
 }

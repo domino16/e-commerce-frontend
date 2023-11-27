@@ -2,7 +2,7 @@
   class="filter-menu relative flex flex-col bg-pure-white w-full h-full sm:w-6/12 md:w-5/12 xl:w-4/12 rounded-r-[30px] lg:rounded-r-[50px] px-9">
   <div class="cart-header flex justify-end w-full py-[30px] pr-[20px] pl-[40px]">
     <button
-      class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-header-button-background-hover rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
+      class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-secondary rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
       (click)="closeFilterMenu()">
       <svg
         class="font-bold"
@@ -19,9 +19,7 @@
   </div>
 
   <form [formGroup]="categoryForm" class="flex flex-col text-lg">
-    <legend class="font-bold text-xl border-b-[1px] border-header-button-background-hover mb-1">
-      Choose category:
-    </legend>
+    <legend class="font-bold text-xl border-b-[1px] border-secondary mb-1">Choose category:</legend>
 
     <input type="radio" id="all" formControlName="category" value="" />
     <label for="all">All</label>

@@ -1,0 +1,39 @@
+
+  ul {
+    list-style-type: none;
+  }
+
+  .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  
+    &__numbers{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  
+  
+    &__numbers {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 1rem;
+  
+      &:hover {
+        color: theme('colors.secondary');
+      }
+  
+      &.active {
+        color: #ffffff;
+        background: theme('colors.secondary');
+        font-weight: 600;
+        border: 1px solid theme('colors.secondary');
+      }
+    }
+  }
+  

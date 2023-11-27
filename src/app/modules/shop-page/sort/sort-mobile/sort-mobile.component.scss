@@ -1,22 +1,19 @@
 input {
   display: none;
-
 }
 
-label{ 
-    padding: 6px 6px;
-    border-radius: 15px;
-&:hover{
+label {
+  padding: 6px 6px;
+  border-radius: 15px;
+  &:hover {
     background-color: theme('colors.header-button-background-when-menu-open');
-}
+  }
 }
 
 input:checked + label {
   position: relative;
   font-weight: bold;
   background-color: theme('colors.header-button-background-in-sticky-header');
- 
- 
 
   &::before {
     content: '';
@@ -25,7 +22,7 @@ input:checked + label {
     top: 13px;
     width: 6px;
     height: 6px;
-    background-color: theme('colors.header-button-background-hover');
+    background-color: theme('colors.secondary');
     border-radius: 100%;
   }
 }

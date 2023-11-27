@@ -1,5 +1,43 @@
+<form [formGroup]="sortForm" >
+	<ul class="select">
+	<li>
+			<input class="select_close" type="radio" name="sortt" id="awesomeness-close" value="0"/>
+			<span class="select_label select_label-placeholder">Sort by:</span>
+		</li>
+		
+		<li class="select_items">
+			<input class="select_expand" type="radio" name="sortt"  id="awesomeness-opener" value="1"/>
+			<label class="select_closeLabel" for="awesomeness-close"></label>
+			
+			<ul class="select_options">
+				<li class="select_option">
+					<input class="select_input" type="radio" formControlName="sort" id="relevance" value=""/>
+					<label class="select_label" for="relevance">Relevance</label>
+				</li>
 
-<ng-container>
+				<li class="select_option">
+					<input class="select_input" type="radio" formControlName="sort" id="highPrice" value="unitPrice,desc"/>
+					<label class="select_label" for="highPrice">Price High to Low</label>
+				</li>
+
+				<li class="select_option">
+					<input class="select_input" type="radio" formControlName="sort" id="lowPrice" value="unitPrice"/>
+					<label class="select_label" for="lowPrice">Price Low to High</label>
+				</li>
+
+				<li class="select_option">
+					<input class="select_input" type="radio" formControlName="sort" id="name" value="name"/>
+					<label class="select_label" for="name">Product Name</label>
+				</li>
+			</ul>
+			
+			<label class="select_expandLabel" for="awesomeness-opener"></label>
+		</li>	
+	</ul>
+	
+</form>
+
+<!-- <ng-container>
 <select>
   <option ngClass="hidden">Sort By:</option>
   <option>Relevance</option>
@@ -10,4 +48,4 @@
 <span class="absolute  bottom-[0.6rem] right-2">
   <img class="w-4 h-4" src="../../../../assets/svg-icons/chevron-down-solid.svg" alt="chevron-icon">
 </span>
-</ng-container>
+</ng-container> -->

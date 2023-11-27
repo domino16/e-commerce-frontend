@@ -1,14 +1,20 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductService } from 'src/app/core/http/product.service';
 import { Product } from 'src/app/core/interfaces/product';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { filterActions } from './+state/filter.actions';
 import { LayoutService } from 'src/app/core/services/layout.service';
-import { selectCategoryId } from './+state/filter.selectors';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -20,9 +26,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnInit {
-  private readonly productService = inject(ProductService);
-  private readonly store = inject(Store)
-  private readonly layoutService = inject(LayoutService)
+  private readonly store = inject(Store);
+  private readonly layoutService = inject(LayoutService);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   @Output() filteredProductsObservableEmitter = new EventEmitter<Observable<Product[]>>();
 
@@ -31,27 +38,28 @@ export class FilterComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.loadCurrentSettings()
+    this.loadCurrentSettings();
   }
 
-   loadCurrentSettings() {
-    this.store.select(selectCategoryId).pipe(untilDestroyed(this)).subscribe(categoryId => this.categoryForm.get('category')?.patchValue(categoryId))
+  loadCurrentSettings() {
+    const currentCategoryId = this.route.snapshot.queryParamMap.get('id');
+    this.categoryForm.get('category')?.patchValue(currentCategoryId);
   }
 
   closeFilterMenu() {
-    this.store.dispatch(filterActions.toggleFilterMenuOpen({isMenuOpen:false}))
-    this.layoutService.removeOverflowHidden()
+    this.store.dispatch(filterActions.toggleFilterMenuOpen({ isMenuOpen: false }));
+    this.layoutService.removeOverflowHidden();
   }
 
   filter() {
-    this.store.dispatch(filterActions.setCategoryId({categoryId: this.categoryForm.value.category}))
-    if (this.categoryForm.value.category) {
-      this.filteredProductsObservableEmitter.emit(
-        this.productService.getProductListByCategory(this.categoryForm.value.category),
-      );
-    } else {
-      this.filteredProductsObservableEmitter.emit(this.productService.getAllProductList(0,20));
-    }
-   this.closeFilterMenu()
+    const queryParams: { id: string } | undefined = {
+      id: this.categoryForm.value.category,
+    };
+    this.router.navigate([], {relativeTo: this.route,
+      queryParams:queryParams.id === '' ? {id:undefined} : queryParams,
+    } );
+    this.closeFilterMenu();
+
+    
   }
 }
