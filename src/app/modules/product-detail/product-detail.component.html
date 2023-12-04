@@ -3,4 +3,6 @@
 <p>{{product.name}}</p>
 <p>{{product.description}}</p>
 
+<button class="py-2 px-5 bg-secondary" (click)="addToCart(product.id, product.name, product.imageUrl, product.unitPrice, 1)">Add to cart</button>
 </ng-container>
+

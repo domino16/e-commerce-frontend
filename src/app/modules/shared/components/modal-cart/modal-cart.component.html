@@ -12,7 +12,7 @@
       <path d="M16.6,18.4H4.4L1.8,7.9h17.5L16.6,18.4L16.6,18.4z" fill="none" />
       <path d="M7.2,5V2h6.4v3" fill="none" />
     </svg>
-    <p class="text-[18px] font-bold">Your cart(4)</p>
+    <p class="text-[18px] font-bold">Your cart({{ items.length }})</p>
     <button
       class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-secondary rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
       (click)="closeCart()">
@@ -29,26 +29,29 @@
       </svg>
     </button>
   </div>
-  <div class="cart-lines w-full h-full px-[40px] overflow-auto">
-    <app-cart-inner></app-cart-inner>
-    <app-cart-inner></app-cart-inner>
-    <app-cart-inner></app-cart-inner>
-    <app-cart-inner></app-cart-inner>
+  <div *ngIf="items.length === 0">
+    <p class="mt-10 text-center text-xl font-bold">Your cart is empty</p>
   </div>
-  <div class="cart-footer py-[20px] px-[40px] relative">
-    <div class="cart-shade"></div>
-    <div
-      class="flex justify-between py-[20px] border-t-black border-t-[2px] text-[18px] leading-[1]">
-      <span>Subtotal</span>
-      <span>$422.59 CAD</span>
+  <ng-container *ngIf="items.length > 0">
+    <div class="cart-lines w-full h-full px-[40px] overflow-auto">
+      <app-cart-inner *ngFor="let item of items" [item]="item"></app-cart-inner>
     </div>
-    <button
-      class="flex justify-center items-center w-full rounded-[4.375rem] bg-black text-white text-[20px] font-bold h-[60px] px-7">
-      <span class="pb-[2px] leading-[1]">proceed to checkout</span>
-    </button>
-    <p class="flex justify-center text-[14px] font-light mt-[20px] leading-[1]">
-      Taxes and shipping will be calculated at checkout
-    </p>
-  </div>
+    <div class="cart-footer py-[20px] px-[40px] relative">
+      <div class="cart-shade"></div>
+      <div
+        class="flex justify-between py-[20px] border-t-black border-t-[2px] text-[18px] leading-[1]">
+        <span>Subtotal</span>
+
+        <span>{{totalPrice | currency: "USD"}}</span>
+      </div>
+      <button
+        class="flex justify-center items-center w-full rounded-[4.375rem] bg-black text-white text-[20px] font-bold h-[60px] px-7">
+        <span class="pb-[2px] leading-[1]">proceed to checkout</span>
+      </button>
+      <p class="flex justify-center text-[14px] font-light mt-[20px] leading-[1]">
+        Taxes and shipping will be calculated at checkout
+      </p>
+    </div>
+  </ng-container>
 </div>
 <div class="background absolute inset-0 bg-overlay-background -z-[1]"></div>

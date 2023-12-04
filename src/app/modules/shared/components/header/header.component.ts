@@ -11,7 +11,7 @@ import {
   onMenuOpenAnimateNavLinksTrigger,
 } from 'src/app/animations/menu-animations';
 import { Store } from '@ngrx/store';
-import { selectUrl } from 'src/app/router.selectors';
+import { selectCurrentRoute} from 'src/app/router.selectors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -35,13 +35,15 @@ export class HeaderComponent implements OnInit {
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
 
   //routes when header text color is white
-  whiteRoutes = ['/shop'];
+  whiteRoutes = ['shop'];
 
   ngOnInit(): void {
-    combineLatest([this.isMenuOpen$, this.isMobile$, this.store.select(selectUrl)])
+    combineLatest([this.isMenuOpen$, this.isMobile$, this.store.select(selectCurrentRoute)])
       .pipe(untilDestroyed(this))
       .subscribe(([isMenuOpen, isMobile, route]) => {
-        this.setHeaderTextColor(route, isMobile, isMenuOpen);
+        if (route) {
+          this.setHeaderTextColor(route.routeConfig.path, isMobile, isMenuOpen);
+        }
       });
   }
 
@@ -50,24 +52,23 @@ export class HeaderComponent implements OnInit {
   }
 
   setHeaderTextColor(route: string, isMobile: boolean, isMenuOpen: boolean) {
-    if (route) {
-      const hasStringStartingWithWhiteRoutes = this.whiteRoutes.some(str => route.startsWith(str));
-      if (this.isStickyHeader) {
-        if (isMenuOpen && !isMobile) {
-          this.headerTextColor = '#fff';
-          this.isMenuTextWhite = true;
-        } else {
-          this.headerTextColor = '#000';
-          this.isMenuTextWhite = false;
-        }
+    const hasStringStartingWithWhiteRoutes = this.whiteRoutes.some(str => route === str);
+
+    if (this.isStickyHeader) {
+      if (isMenuOpen && !isMobile) {
+        this.headerTextColor = '#fff';
+        this.isMenuTextWhite = true;
       } else {
-        if (hasStringStartingWithWhiteRoutes) {
-          this.headerTextColor = '#fff';
-          this.isMenuTextWhite = true;
-        } else {
-          this.headerTextColor = '#000';
-          this.isMenuTextWhite = false;
-        }
+        this.headerTextColor = '#000';
+        this.isMenuTextWhite = false;
+      }
+    } else {
+      if (hasStringStartingWithWhiteRoutes) {
+        this.headerTextColor = '#fff';
+        this.isMenuTextWhite = true;
+      } else {
+        this.headerTextColor = '#000';
+        this.isMenuTextWhite = false;
       }
     }
   }

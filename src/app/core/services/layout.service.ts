@@ -7,13 +7,15 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class LayoutService {
+ 
   private readonly isMenuOpenSubject = new BehaviorSubject<boolean>(false);
   private readonly isCartOpenSubject = new BehaviorSubject<boolean>(false);
   private readonly isMobileSubject = new BehaviorSubject<boolean>(false);
 
   isMenuOpen$: Observable<boolean> = this.isMenuOpenSubject.asObservable();
   isCartOpen$: Observable<boolean> = this.isCartOpenSubject.asObservable();
-  isMobile$: Observable<boolean> = this.isMobileSubject.asObservable();
+  isMobile$: Observable<boolean> = this.isMobileSubject.asObservable(); 
+  obj:object ={a:'cegła'}
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {

@@ -66,7 +66,7 @@ export class CartService {
     this.totalQuantity.next(totalQuantityValue);
 
     // log cart data just for debugging purposes
-    this.logCartData(totalPriceValue, totalQuantityValue);
+    // this.logCartData(totalPriceValue, totalQuantityValue);
 
     // persist cart data
     this.persistCartItems();
@@ -76,18 +76,18 @@ export class CartService {
     this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
-  logCartData(totalPriceValue: number, totalQuantityValue: number) {
-    console.log('Contents of the cart');
-    for (const tempCartItem of this.cartItems) {
-      const subTotalPrice = tempCartItem.quantity * tempCartItem.unitPrice;
-      console.log(
-        `name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`,
-      );
-    }
+//   logCartData(totalPriceValue: number, totalQuantityValue: number) {
+//     console.log('Contents of the cart');
+//     for (const tempCartItem of this.cartItems) {
+//       const subTotalPrice = tempCartItem.quantity * tempCartItem.unitPrice;
+//       console.log(
+//         `name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`,
+//       );
+//     }
 
-    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
-    console.log('----');
-  }
+//     console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
+//     console.log('----');
+//   }
 
   decrementQuantity(theCartItem: CartItem) {
     theCartItem.quantity--;
@@ -99,6 +99,11 @@ export class CartService {
     }
   }
 
+  incrementQuantity(theCartItem: CartItem) {
+    theCartItem.quantity++
+    this.computeCartTotals();
+  }
+
   remove(theCartItem: CartItem) {
     // get index of item in the array
     const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
@@ -106,7 +111,6 @@ export class CartService {
     // if found, remove the item from the array at the given index
     if (itemIndex > -1) {
       this.cartItems.splice(itemIndex, 1);
-
       this.computeCartTotals();
     }
   }

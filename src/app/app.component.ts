@@ -27,15 +27,13 @@ export class AppComponent{
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$
   isCartOpen$:  Observable<boolean> = this.layoutService.isCartOpen$
 
+  a = this.layoutService.obj
  
-
-  openCart(){
-    this.layoutService.openCart();
-  }
 
   closeCart(){
     this.layoutService.closeCart();
   }
 
+  
 
 }
