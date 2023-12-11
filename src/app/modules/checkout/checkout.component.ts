@@ -1,42 +1,96 @@
-/* eslint-disable promise/always-return */
-/* eslint-disable max-lines-per-function */
-/* eslint-disable promise/catch-or-return */
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, ChangeDetectionStrategy, OnInit, inject, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentInfo } from 'src/app/core/interfaces/payment-info';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CartService } from 'src/app/core/services/cart.service';
-import { CartItem } from 'src/app/core/interfaces/cart-item';
 import { CheckoutService } from 'src/app/core/services/checkout.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Stripe, StripeElements, loadStripe } from '@stripe/stripe-js';
+import { environment } from 'src/environments/environment.development';
+import { CartService } from 'src/app/core/services/cart.service';
+import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.component';
+import { Observable, catchError, map, noop } from 'rxjs';
 import { Purchase } from 'src/app/core/interfaces/purchase';
 import { Address } from 'src/app/core/interfaces/address';
-import { Stripe, StripeCardElement, loadStripe } from '@stripe/stripe-js';
-import { environment } from 'src/environments/environment.development';
+import { Customer } from 'src/app/core/interfaces/customer';
+import { Order } from 'src/app/core/interfaces/order';
 import { OrderItem } from 'src/app/core/interfaces/order-item';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { LayoutService } from 'src/app/core/services/layout.service';
 
 @UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CheckoutSummaryComponent, RouterOutlet],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
 })
-export class CheckoutComponent implements OnInit, AfterViewInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
+  private readonly layoutService = inject(LayoutService)
   private readonly checkoutService = inject(CheckoutService);
   private readonly cartService = inject(CartService);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
-  totalPrice$ = this.cartService.totalPrice;
-  totalPrice!: number;
+  totalPrice = 0;
+  orderItems: OrderItem[] = this.cartService.cartItems.map(item => {
+    return {
+      imageUrl: item.imageUrl,
+      productId: item.id,
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+    };
+  });
+
+  countries$ = this.checkoutService.getCountries();
+  states$: Observable<string[]> = this.checkoutService.getStates('pl');
 
   stripe: Stripe | null = null;
+  elements!: StripeElements;
   paymentInfo!: PaymentInfo;
 
-  isDisabled: boolean = false;
+  isLoading: boolean = false;
+
+  purchase: Purchase | undefined;
+  
+
+  ngOnInit() {
+    this.layoutService.addOverflowHidden()
+    this.stripeInitialization();
+    this.countriesAndStateHandling();
+
+    //subscriptions
+    this.cartService.totalPrice
+      .pipe(untilDestroyed(this))
+      .subscribe(price => (this.totalPrice = price));
+  }
+
+  ngOnDestroy(): void {
+    this.layoutService.removeOverflowHidden();
+  }
+
+  async stripeInitialization() {
+    this.stripe = await loadStripe(environment.stripeKey);
+  }
+
+  setupStripeForm() {
+    this.paymentInfo = {
+      amount: Math.round(this.totalPrice * 100),
+      currency: 'pln',
+      receiptEmail: this.purchase?.customer.email as string,
+    };
+    this.checkoutService
+      .createPaymentIntent(this.paymentInfo)
+      .pipe(untilDestroyed(this))
+      .subscribe(paymentIntent => {
+        this.elements = this.stripe!.elements({
+          clientSecret: paymentIntent.client_secret,
+        });
+        const paymentElement = this.elements.create('payment');
+        paymentElement.mount('#payment-element');
+      });
+  }
 
   checkoutFormGroup = new FormGroup({
     customer: new FormGroup({
@@ -50,170 +104,109 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       ]),
     }),
     shippingAddress: new FormGroup({
-      street: new FormControl('Chociw', [Validators.required, Validators.minLength(2)]),
+      street: new FormControl('', [Validators.required, Validators.minLength(2)]),
       city: new FormControl('Widawa', [Validators.required, Validators.minLength(2)]),
-      state: new FormControl('Lodzkie', [Validators.required]),
-      country: new FormControl('PL', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required]),
       zipCode: new FormControl('98-170', [Validators.required, Validators.minLength(2)]),
     }),
-    billingAddress: new FormGroup({
-      street: new FormControl('Chociw', [Validators.required, Validators.minLength(2)]),
-      city: new FormControl('Widawa', [Validators.required, Validators.minLength(2)]),
-      state: new FormControl('Lodzkie', [Validators.required]),
-      country: new FormControl('PL', [Validators.required]),
-      zipCode: new FormControl('98-170', [Validators.required, Validators.minLength(2)]),
-    }),
-    creditCard: new FormGroup({}),
   });
 
-  cardElement: StripeCardElement | null = null;
-  displayError: any = '';
-
-  async ngOnInit(): Promise<void> {
-    this.stripe = await loadStripe(environment.stripeKey);
-    this.totalPrice$.pipe(untilDestroyed(this)).subscribe(a => (this.totalPrice = a));
-
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.setupStripePaymentForm();
-    }, 3000);
-  }
-
-  setupStripePaymentForm() {
-    if (this.stripe) {
-      const elements = this.stripe.elements();
-
-      console.log(elements);
-
-      this.cardElement = elements.create('card', { hidePostalCode: true });
-
-      this.cardElement.mount('#card-element');
-
-      this.cardElement.on('change', (event: any) => {
-        // get a handle to card-errors element
-        this.displayError = document.getElementById('card-errors')!;
-
-        if (event.complete) {
-          this.displayError.textContent = '';
-        } else if (event.error) {
-          // show validation error to customer
-          this.displayError.textContent = event.error.message;
-        }
-      });
+  submitForm() {
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+      return;
     }
+
+    const customer: Customer = {
+      firstName: this.firstName?.value as string,
+      lastName: this.lastName?.value as string,
+      email: this.email?.value as string,
+    };
+    const address: Address = {
+      street: this.shippingAddressStreet?.value as string,
+      city: this.shippingAddressCity?.value as string,
+      state: this.shippingAddressState?.value as string,
+      country: this.shippingAddressCountry?.value as string,
+      zipCode: this.shippingAddressZipCode?.value as string,
+    };
+    const order: Order = { totalPrice: this.totalPrice, totalQuantity: 3 };
+    const orderItems: OrderItem[] = this.orderItems;
+
+    this.purchase = {
+      customer,
+      shippingAddress: address,
+      billingAddress: address,
+      order,
+      orderItems,
+    };
+    this.setupStripeForm();
   }
 
   // eslint-disable-next-line max-lines-per-function
   onSubmit() {
-    console.log('Handling the submit button');
-
-    // if (this.checkoutFormGroup.invalid) {
-    //   this.checkoutFormGroup.markAllAsTouched();
-    //   return;
-    // }
-
-    // get cart items
-    const cartItems = this.cartService.cartItems;
-
-    // create orderItems from cartItems
-    // - long way
-    /*
-    let orderItems: OrderItem[] = [];
-    for (let i=0; i < cartItems.length; i++) {
-      orderItems[i] = new OrderItem(cartItems[i]);
+    if (this.isLoading) {
+      return;
     }
-    */
+    this.isLoading = true;
 
-    // - short way of doing the same thingy
-    // create orderItems from cartItems
-    // - long way
-    
-    const orderItems: OrderItem[] = [];
-    for (let i=0; i < cartItems.length; i++) {
-      orderItems[i] = {imageUrl: cartItems[i].imageUrl, unitPrice:cartItems[i].unitPrice, quantity:cartItems[i].quantity, productId:cartItems[i].id  };
-    }
-
-    // set up purchase
-    const purchase: Purchase = {
-      customer:{  firstName: this.checkoutFormGroup.controls['customer'].value.firstName!,
-      lastName: this.checkoutFormGroup.controls['customer'].value.lastName!,
-      email: this.checkoutFormGroup.controls['customer'].value.email!,},
-      shippingAddress: this.checkoutFormGroup.controls['shippingAddress'].value as Address,
-      billingAddress: this.checkoutFormGroup?.controls['billingAddress'].value as Address,
-      order: {totalPrice:this.totalPrice, totalQuantity: 5},
-      orderItems: orderItems,
-    };
-
-    this.paymentInfo = {amount: Math.round(this.totalPrice * 100),
-    currency: "USD",
-    receiptEmail: purchase.customer.email
-    } 
- 
-
-    // if valid form then
-    // - create payment intent
-    // - confirm card payment
-    // - place order
-
-    if (!this.checkoutFormGroup.invalid && this.displayError.textContent === '') {
-      this.isDisabled = true;
-      this.checkoutService
-        .createPaymentIntent(this.paymentInfo)
-        .pipe(untilDestroyed(this))
-        .subscribe(paymentIntentResponse => {
-          this.stripe
-            ?.confirmCardPayment(
-              paymentIntentResponse.client_secret,
-              {
-                payment_method: {
-                  card: this.cardElement!,
-                  billing_details: {
-                    email: purchase.customer.email,
-                    name: `${purchase.customer.firstName} ${purchase.customer.lastName}`,
-                    address: {
-                      line1: purchase.billingAddress.street,
-                      city: purchase.billingAddress.city,
-                      state: purchase.billingAddress.state,
-                      postal_code: purchase.billingAddress.zipCode,
-                      country: 'PL',
-                    },
+    this.stripe!.confirmPayment({
+      elements: this.elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/checkout/payment-status`,
+      },
+      redirect: 'if_required',
+    })
+      .then(result => {
+        if (result.error) {
+          this.router.navigate(['payment-status'], {
+            relativeTo: this.route,
+            queryParams: { redirect_status: 'failed', error_message: result.error.message },
+          });
+        } else {
+          this.checkoutService
+            .placeOrder(this.purchase!)
+            .pipe(untilDestroyed(this))
+            .subscribe({
+              next: response => {
+                this.router.navigate(['payment-status'], {
+                  relativeTo: this.route,
+                  queryParams: {
+                    redirect_status: 'succeeded',
+                    tracking_number: response.orderTrackingNumber,
                   },
-                },
+                });
+                this.cartService.resetCart();
               },
-              { handleActions: false },
-            )
-            .then(result => {
-              if (result.error) {
-                // inform the customer there was an error
-                alert(`There was an error: ${result.error.message}`);
-                this.isDisabled = false;
-              } else {
-                // call REST API via the CheckoutService
-                this.checkoutService
-                  .placeOrder(purchase)
-                  .pipe(untilDestroyed(this))
-                  .subscribe({
-                    next: response => {
-                      alert(
-                        `Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`,
-                      );
-
-                      // reset cart
-                      // this.resetCart();
-                      this.isDisabled = false;
-                    },
-                    error: err => {
-                      alert(`There was an error: ${err.message}`);
-                      this.isDisabled = false;
-                    },
-                  });
-              }
+              error: err => {
+                alert(`There was an error: ${err.message}`);
+              },
             });
-        });
-    } else {
-      this.checkoutFormGroup.markAllAsTouched();
+        }
+        return noop;
+      })
+      .catch(e => console.log(e));
+    this.isLoading = false;
+  }
+
+  countriesAndStateHandling() {
+    this.shippingAddressCountry?.valueChanges.pipe(untilDestroyed(this)).subscribe(country => {
+      this.setStates(country!);
+    });
+    this.shippingAddressCountry?.setValue('PL');
+  }
+
+  setStates(key: string) {
+    if (key) {
+      this.states$ = this.checkoutService.getStates(key).pipe(
+        catchError(() => {
+          return this.countries$.pipe(
+            map(countries => {
+              return [countries.find(country => country.key === key)!.value];
+            }),
+          );
+        }),
+      );
     }
   }
 
@@ -241,34 +234,5 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
   get shippingAddressCountry() {
     return this.checkoutFormGroup.get('shippingAddress.country');
-  }
-
-  get billingAddressStreet() {
-    return this.checkoutFormGroup.get('billingAddress.street');
-  }
-  get billingAddressCity() {
-    return this.checkoutFormGroup.get('billingAddress.city');
-  }
-  get billingAddressState() {
-    return this.checkoutFormGroup.get('billingAddress.state');
-  }
-  get billingAddressZipCode() {
-    return this.checkoutFormGroup.get('billingAddress.zipCode');
-  }
-  get billingAddressCountry() {
-    return this.checkoutFormGroup.get('billingAddress.country');
-  }
-
-  get creditCardType() {
-    return this.checkoutFormGroup.get('creditCard.cardType');
-  }
-  get creditCardNameOnCard() {
-    return this.checkoutFormGroup.get('creditCard.nameOnCard');
-  }
-  get creditCardNumber() {
-    return this.checkoutFormGroup.get('creditCard.cardNumber');
-  }
-  get creditCardSecurityCode() {
-    return this.checkoutFormGroup.get('creditCard.securityCode');
   }
 }

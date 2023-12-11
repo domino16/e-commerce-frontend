@@ -44,7 +44,9 @@
 
         <span>{{totalPrice | currency: "USD"}}</span>
       </div>
-      <button
+      <button 
+      routerLink="/checkout"
+      (click)="closeCart()"
         class="flex justify-center items-center w-full rounded-[4.375rem] bg-black text-white text-[20px] font-bold h-[60px] px-7">
         <span class="pb-[2px] leading-[1]">proceed to checkout</span>
       </button>

@@ -4,13 +4,14 @@ import { CartInnerComponent } from './cart-inner/cart-inner.component';
 import { CartItem } from 'src/app/core/interfaces/cart-item';
 import { CartService } from 'src/app/core/services/cart.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { RouterModule } from '@angular/router';
 
 @UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-modal-cart',
   standalone: true,
-  imports: [CommonModule, CartInnerComponent],
+  imports: [CommonModule, CartInnerComponent, RouterModule],
   templateUrl: './modal-cart.component.html',
   styleUrls: ['./modal-cart.component.scss'],
 })

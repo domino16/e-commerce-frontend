@@ -114,4 +114,8 @@ export class CartService {
       this.computeCartTotals();
     }
   }
+
+  resetCart(){
+    this.cartItems = [];
+  }
 }

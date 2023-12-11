@@ -25,10 +25,7 @@ export class AppComponent{
   private readonly layoutService = inject(LayoutService)
 
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$
-  isCartOpen$:  Observable<boolean> = this.layoutService.isCartOpen$
-
-  a = this.layoutService.obj
- 
+  isCartOpen$:  Observable<boolean> = this.layoutService.isCartOpen$ 
 
   closeCart(){
     this.layoutService.closeCart();

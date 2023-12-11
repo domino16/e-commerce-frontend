@@ -1,0 +1,76 @@
+:host {
+  height: calc(100dvh - 100px);
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+
+  form {
+label{
+    font-size: 0.9rem;
+}
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid theme('colors.background-products-checkout');
+      box-shadow:
+        0px 1px 1px rgba(0, 0, 0, 0.03),
+        0px 3px 6px rgba(0, 0, 0, 0.02);
+      border-radius: 5px;
+      color: theme('colors.input-text-color');
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: 0px;
+        border-color: hsla(210, 96%, 45%, 50%);
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.03),
+          0 3px 6px rgba(0, 0, 0, 0.02),
+          0 0 0 3px hsla(210, 96%, 45%, 25%),
+          0 1px 1px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      &.ng-invalid.ng-touched{
+        color: theme('colors.color-danger');
+        border-color:theme('colors.color-danger');
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 1px theme('colors.color-danger');
+      }
+
+      &:focus.ng-invalid.ng-touched{
+        color: theme('colors.color-danger');
+      }
+    }
+
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid theme('colors.background-products-checkout');
+      box-shadow:
+        0px 1px 1px rgba(0, 0, 0, 0.03),
+        0px 3px 6px rgba(0, 0, 0, 0.02);
+      border-radius: 5px;
+      color: theme('colors.input-text-color');
+      font-size: 1rem;
+
+    
+
+      &.ng-invalid.ng-touched{
+        color: theme('colors.color-danger');
+        border-color:theme('colors.color-danger');
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02), 0 0 0 1px theme('colors.color-danger');
+      } 
+      
+      &:focus {
+        outline: 0px;
+        border-color: hsla(210, 96%, 45%, 50%);
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.03),
+          0 3px 6px rgba(0, 0, 0, 0.02),
+          0 0 0 3px hsla(210, 96%, 45%, 25%),
+          0 1px 1px 0 rgba(0, 0, 0, 0.08);
+      }
+      
+    }
+
+  }
+}

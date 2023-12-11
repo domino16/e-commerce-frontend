@@ -3,6 +3,7 @@ import { LandingPageComponent } from './modules/landing-page/landing-page.compon
 import { ShopPageComponent } from './modules/shop-page/shop-page.component';
 import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 import { CheckoutComponent } from './modules/checkout/checkout.component';
+import { PaymentStatusComponent } from './modules/checkout/payment-status/payment-status.component';
 
 export const routes: Routes = [
   {
@@ -20,7 +21,12 @@ export const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    children: [{
+      path: 'payment-status',
+      component: PaymentStatusComponent
+    }]
   },
+  
 ];
 
 // export const appPaths = {
