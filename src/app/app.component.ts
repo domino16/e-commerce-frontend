@@ -11,13 +11,14 @@ import { LayoutService } from './core/services/layout.service';
 import { Observable } from 'rxjs';
 import { headerInitAnimationTrigger } from './animations/header-init-animations';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './modules/shared/components/footer/footer.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, HeaderComponent, ModalMenuComponent, ModalCartComponent, StickyReactiveHeaderDirective, LandingPageComponent, RouterOutlet],
+  imports: [CommonModule, HeaderComponent, ModalMenuComponent, ModalCartComponent, StickyReactiveHeaderDirective, LandingPageComponent,FooterComponent, RouterOutlet],
   standalone: true,
   animations: [cartAnimationStateTrigger, menuAnimationStateTrigger, onOpenMenuOpenStickyHeaderAnimationTrigger, headerInitAnimationTrigger ]
 })

@@ -3,7 +3,7 @@
   *ngIf="isStickyHeader"
   [@onMenuOpenAnimateHeaderBackground]="isMenuOpen$ | async"></div>
 <nav class="flex">
-  <div class="header-logo max-w-[192px] w-[48vw] mr-[20px]">
+  <div class="header-logo max-w-[192px] w-[48vw] mr-[20px] cursor-pointer" routerLink="/">
     <svg
       viewBox="0 0 369.9130434782609 89.04387512457164"
       [ngStyle]="{ fill: (isMenuOpen$ | async) ? '#000' : headerTextColor }">
@@ -53,7 +53,7 @@
       <a routerLink="/shop"><span>shop</span></a>
     </li>
     <li [ngStyle]="{ transform: (isMenuOpen$ | async) ? 'translateY(-100px)' : 'translateY(0)' }">
-      <a routerLink="/"><span>community</span></a>
+      <a routerLink="/"><span>portfolio</span></a>
     </li>
   </ul>
 </nav>
@@ -62,7 +62,7 @@
   [ngStyle]="{ color: headerTextColor }">
   <ul class="flex h-[40px] items-center">
     <li class="hidden md:flex mr-[30px]">
-      <a routerLink="/"><span>build your box</span></a>
+      <a href="https://github.com/domino16/e-commerce-frontend"><span>see github repository</span></a>
     </li>
     <li class="hidden md:flex mr-[30px]">
       <a routerLink="/"><span>PL</span></a>

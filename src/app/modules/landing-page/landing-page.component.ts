@@ -2,8 +2,10 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlideUpDirective } from '../shared/directives/animations/gsap/landing-page/slide-up.directive';
 import { TilesAnimationDirective } from '../shared/directives/animations/gsap/landing-page/tiles-animation.directive';
+import { RouterModule } from '@angular/router';
 
-interface tiles {
+export interface tiles {
+  id:number;
   title: string;
   subTitle: string;
   image: string;
@@ -13,7 +15,7 @@ interface tiles {
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, SlideUpDirective, TilesAnimationDirective],
+  imports: [CommonModule, SlideUpDirective, TilesAnimationDirective, RouterModule],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   animations:[
@@ -22,29 +24,26 @@ interface tiles {
 })
 export class LandingPageComponent implements OnInit {
   tilesArray: Array<tiles> = [
-    {
+    { id: 1,
       title: 'coffee beans',
       subTitle: 'new and improved recipe',
       image: '../../../assets/landing_tiles_image/coffee-package.png',
     },
-    { title: 'ice coffee', subTitle: 'zero sugar', image: '../../../assets/landing_tiles_image/ice-latte.png' },
-    {
+    { id: 2,title: 'ice coffee', subTitle: 'zero sugar', image: '../../../assets/landing_tiles_image/ice-latte.png' },
+    {id: 3,
       title: 'coffee capsule',
       subTitle: '',
       image: '../../../assets/landing_tiles_image/kapsułka.png',
     },
-    { title: 'mugs', subTitle: '', image: '../../../assets/landing_tiles_image/kubek.png' },
+    { id: 4,title: 'mugs', subTitle: '', image: '../../../assets/landing_tiles_image/kubek.png' },
     {
-      title: 'yerba mate',
+      id:5, title: 'yerba mate',
       subTitle: 'zero sugar',
       image: '../../../assets/landing_tiles_image/yerba.png',
     },
-    { title: 'clothes', subTitle: '', image: '../../../assets/landing_tiles_image/koszulka biała.png' },
+    { id: 6 ,title: 'clothes', subTitle: '', image: '../../../assets/landing_tiles_image/koszulka biała.png' },
   ];
 
-  tilesTrackBy(index: number, item: tiles) {
-    return item;
-  }
 
   ngOnInit(): void {
     this.scrollTop()

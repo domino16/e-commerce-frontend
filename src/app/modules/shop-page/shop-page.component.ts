@@ -45,7 +45,8 @@ export class ShopPageComponent implements OnInit {
   );
 
   ngOnInit(): void {
-    this.scrollTop()
+    this.scrollTop()  
+   
   }
 
   openFilterMenu() {
@@ -57,4 +58,9 @@ export class ShopPageComponent implements OnInit {
     window.scrollTo({top:0})
   }
 
+  scrollToProducts(){
+       const scrollHeight = window.innerHeight;
+    window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+  }
+  
 }

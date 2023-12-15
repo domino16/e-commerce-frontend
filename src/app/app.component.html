@@ -1,4 +1,4 @@
-<app-header @headerInitAniamation></app-header>
+<app-header class="z-[1]" @headerInitAniamation></app-header>
 <!-- fixed header visible on scroll up -->
 <app-header
   class="fixed z-[3]"
@@ -10,4 +10,4 @@
 <app-modal-menu *ngIf="isMenuOpen$ | async" @openCloseMenu></app-modal-menu>
 <app-modal-cart (closeCartEvent)="closeCart()" *ngIf="isCartOpen$ | async" @openCloseCart></app-modal-cart>
 <router-outlet></router-outlet>
-<div class="w-full h-[1500px] bg-white -z-10"></div>
+<app-footer></app-footer>

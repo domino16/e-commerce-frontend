@@ -1,8 +1,122 @@
+<!-- eslint-disable @angular-eslint/template/no-call-expression -->
 <ng-container *ngIf="product$ | async as product">
-<img class="w-96 h-96" src="{{product.imageUrl}}" alt="">
-<p>{{product.name}}</p>
-<p>{{product.description}}</p>
+  <div class="w-full lg:w-1/2 self-end">
+    <img
+      class="w-full h-full backdrop-brightness-95 rounded-[50px]"
+      src="{{ product.imageUrl }}"
+      alt="" />
+  </div>
+  <div class="w-full lg:w-1/2">
+    <div class="mx-5">
+      <h2 class="text-[clamp(48px,120/2000*100vw,120px)] my-5">{{ product.name }}</h2>
+      <p class="my-5 text-xl font-semibold">{{ product.unitPrice | currency }}</p>
+      <button
+        class="rounded-[50px] text-white bg-black py-3 px-7 font-semibold text-xl"
+        (click)="addToCart(product.id, product.name, product.imageUrl, product.unitPrice, 1)">
+        Add to cart
+      </button>
+      <p class="px-4 py-12 font-medium text-lg">{{ product.description }}</p>
 
-<button class="py-2 px-5 bg-secondary" (click)="addToCart(product.id, product.name, product.imageUrl, product.unitPrice, 1)">Add to cart</button>
+      <!--  accordions -->
+
+      <div
+        #accordion1
+        [@expandCollapse]="accordion1.classList.contains('expanded') ? 'expanded' : 'collapsed'"
+        (click)="toggleAccordion(accordion1)"
+        (keydown)="toggleAccordion(accordion1)"
+        class="accordion relative border-[1px] border-black rounded-[50px] p-4 cursor-pointer">
+        <div class="title flex items-center justify-between h-[38px] px-5 text-xl font-semibold">
+          <p>Ingredients</p>
+        </div>
+        <ul class="my-8 font-semibold text-lg list-disc px-10">
+          <li><p>Lorem, ipsum dolor.</p></li>
+          <li><p>Adipisicing</p></li>
+          <li><p>Consectetur adipisicing elit.</p></li>
+          <li><p>Dolor sit amet.</p></li>
+        </ul>
+      </div>
+      <div
+        #accordion2
+        [@expandCollapse]="accordion2.classList.contains('expanded') ? 'expanded' : 'collapsed'"
+        (click)="toggleAccordion(accordion2)"
+        (keydown)="toggleAccordion(accordion2)"
+        class="accordion relative border-[1px] border-black rounded-[50px] p-4 overflow-hidden cursor-pointer">
+        <div class="title flex items-center justify-between h-[38px] px-5 text-xl font-semibold">
+          <p>No bullsh!t</p>
+        </div>
+        <ul class="my-8 font-semibold text-lg list-disc px-10">
+          <li><p>Lorem, ipsum dolor.</p></li>
+          <li><p>Adipisicing</p></li>
+          <li><p>Consectetur adipisicing elit.</p></li>
+          <li><p>Dolor sit amet.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="perks grid grid-cols-2 sm:grid-cols-3 w-full justify-center items-center gap-y-7 mt-12">
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/organic.svg" alt="" />
+        <p class="text-lg font-semibold">organic</p>
+      </div>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/reshot-icon-enviroment-love-XAE29M876W.svg" alt="" />
+        <p class="text-lg font-semibold">enironment love</p>
+      </div>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/reshot-icon-global-shipping-D2ERSCNG3M.svg" alt="" />
+        <p class="text-lg font-semibold">global shipping</p>
+      </div>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/reshot-icon-placeholder-25JE3QLCM7.svg" alt="" />
+        <p class="text-lg font-semibold">made in Poland</p>
+      </div>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/reshot-icon-premium-quality-4DBYQUJHTX.svg" alt="" />
+        <p class="text-lg font-semibold">premium quality</p>
+      </div>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <img src="../../../assets/svg-icons/reshot-icon-recycled-goods-M27UJ9REBQ.svg" alt="" />
+        <p class="text-lg font-semibold">recyclable</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex relative rounded-[50px] object-cover my-20 mx-1 sm:mx-10 overflow-hidden">
+    <img
+      class="w-full"
+      src="../../../assets/set-coffee-beans-ground-coffee-shape-world-map-top-view-dark-background_187166-18617.avif"
+      alt="coffe world" />
+    <div class="absolute inset-0 flex justify-center items-center z-[1]">
+      <svg class="p-[10%] translate-x-[-5%]" viewBox="0 0 369.9130434782609 89.04387512457164" fill="#f4f4f4">
+        <g
+          featurekey="symbolFeature-0"
+          transform="matrix(0.5861141589482338,0,0,0.5861141589482338,23.79623395895906,15.314692211032515)">
+          <line xmlns="http://www.w3.org/2000/svg" x1="-39.2" y1="19.2" x2="-40.6" y2="18.3"></line>
+          <g xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M85.1,48.4c-2.5-0.7-6.2,3.5-8.6,6.7c0,0,0-0.1,0-0.1c0,0,0,0,0,0c0-7-15.8-11.2-31-11.2s-31,4.2-31,11.2c0,0,0,0,0,0   c0,17.1,13.9,31,31,31c7.5,0,14.5-2.7,19.9-7.2c11.2-2.1,23.3-8.7,23.8-21.3C89.4,52.8,87.7,49,85.1,48.4z M45.6,45.7   c13.7,0,29,3.8,29,9.2c0,5.4-15.3,9.2-29,9.2s-29-3.8-29-9.2C16.6,49.5,31.8,45.7,45.6,45.7z M45.6,83.9   c-14.5,0-26.6-10.7-28.7-24.6c4.9,4.3,17,6.8,28.7,6.8s23.7-2.5,28.7-6.8C72.1,73.2,60.1,83.9,45.6,83.9z M68.2,76   c4.3-4.6,7.2-10.5,8.1-17.1c2.9-4.4,7-9,8.3-8.6c1.2,0.3,2.7,2.9,2.6,7C87.1,60.7,85.3,71.7,68.2,76z"></path>
+            <path
+              d="M74.9,80.9c1,0.5,1.5,1,1.5,1.6c0,2.9-13.5,5.2-30.1,5.2c-16.6,0-30.1-2.3-30.1-5.2c0-0.6,0.5-1.1,1.5-1.6   c-5,1.1-8,2.4-8,3.9c0,3.5,16.4,6.3,36.6,6.3s36.6-2.8,36.6-6.3C82.9,83.4,79.9,82,74.9,80.9z"></path>
+            <path
+              d="M48.8,41.2c-0.2,0.5,0,1.1,0.5,1.3c0.1,0.1,0.3,0.1,0.4,0.1c0.4,0,0.7-0.2,0.9-0.6c0.2-0.5,5.9-12.9-0.2-19.1   c-7-7.1-3-11.3-2.8-11.5c0.4-0.4,0.4-1,0-1.4c-0.4-0.4-1-0.4-1.4,0c-0.1,0.1-1.9,1.9-1.9,5c0,3,1.5,6.1,4.7,9.3   C54.1,29.5,48.8,41.1,48.8,41.2z"></path>
+            <path
+              d="M42.8,40.3c-0.2,0.5,0,1.1,0.5,1.3c0.1,0.1,0.3,0.1,0.4,0.1c0.4,0,0.7-0.2,0.9-0.6c0.2-0.4,4.6-10-0.2-14.8   c-5.1-5.2-2.3-8.3-2.1-8.4c0.4-0.4,0.4-1,0-1.4c-0.4-0.4-1-0.4-1.4,0c-0.1,0.1-1.5,1.5-1.5,4c0,2.4,1.2,4.8,3.6,7.3   C46.8,31.6,42.8,40.2,42.8,40.3z"></path>
+            <path
+              d="M45.6,67.5c-10.9,0-20.1-1.8-23.8-4.3c1.9,10.3,11.8,18.2,23.8,18.2c12,0,21.9-7.9,23.8-18.2   C65.7,65.7,56.4,67.5,45.6,67.5z"></path>
+            <path
+              d="M45.7,62.8c12.4,0,22.5-3.5,22.5-5.4s-10.1-3.4-22.5-3.4c-12.4,0-22.5,1.5-22.5,3.4S33.3,62.8,45.7,62.8z"></path>
+          </g>
+        </g>
+        <g
+          id="SvgjsG1023"
+          featurekey="nameFeature-0"
+          transform="matrix(2.5153635956619036,0,0,2.5153635956619036,96.00000119941883,-28.775751282370635)">
+          <path
+            d="M5.68 40 l-0.8 0 c-2.68 0 -4.88 -2.16 -4.88 -4.84 l0.08 -13.12 c0 -2.68 2.2 -4.84 4.88 -4.84 l0.8 0 c2.68 0 4.88 2.16 4.88 4.84 l0 3.2 l-3.76 0 l0 -3.2 c0 -0.6 -0.48 -1.08 -1.12 -1.08 l-0.8 0 c-0.64 0 -1.12 0.48 -1.12 1.08 l-0.08 13.12 c0 0.6 0.48 1.08 1.12 1.08 l0.8 0 c0.64 0 1.12 -0.48 1.12 -1.08 l0 -3.76 l3.76 0 l0 3.76 c0 2.68 -2.16 4.84 -4.88 4.84 z M18.826999999999998 17.64 l3.8 0 l0 22.84 l-3.8 0 l0 -0.84 c-0.28 0.08 -0.6 0.12 -0.92 0.12 c-2.64 0 -4.76 -2.16 -4.76 -4.76 l0 -17.32 l3.8 0 l0 17.32 c0 0.52 0.44 0.96 0.96 0.96 s0.92 -0.44 0.92 -0.96 l0 -17.36 z M28.934 39.92 l0 6.92 l-3.8 0 l0 -29.48 l5.92 0 c2.64 0 4.76 2.12 4.76 4.76 l0 13.04 c0 2.6 -2.12 4.76 -4.76 4.76 l-2.12 0 z M28.934 21.16 l0 14.96 l2.12 0 c0.56 0 0.96 -0.44 0.96 -0.96 l0 -13.04 c0 -0.52 -0.4 -0.96 -0.96 -0.96 l-2.12 0 z M43.721 40.04 c-3 0 -5.4 -2.44 -5.4 -5.4 l0 -11.88 c0 -2.96 2.4 -5.4 5.4 -5.4 c2.96 0 5.36 2.44 5.36 5.4 l0 11.88 c0 2.96 -2.4 5.4 -5.36 5.4 z M43.721 21.2 c-0.88 0 -1.56 0.72 -1.56 1.56 l0 11.88 c0 0.88 0.68 1.56 1.56 1.56 c0.84 0 1.56 -0.68 1.56 -1.56 l0 -11.88 c0 -0.84 -0.72 -1.56 -1.56 -1.56 z M55.587999999999994 15.239999999999998 c-0.12 0 -0.24 0.08 -0.24 0.24 l0 1.96 l2.84 0 l0 3.8 l-2.84 0 l0 18.68 l-3.76 0 l0 -24.44 c0 -2.24 1.8 -4.04 4 -4.04 l2.6 0 l0 3.8 l-2.6 0 z M66.65499999999999 17.32 c2.64 0 4.76 2.16 4.76 4.8 l0 13.08 c0 2.64 -2.12 4.8 -4.76 4.8 l-5.96 0 l0 -28.56 l3.8 0 l0 5.88 l2.16 0 z M67.615 35.2 l0 -13.08 c0 -0.56 -0.44 -1 -0.96 -1 l-2.16 0 l0 15.04 l2.16 0 c0.52 0 0.96 -0.44 0.96 -0.96 z M79.122 39.92 c-2.88 0 -5.2 -2.36 -5.2 -5.24 l0 -12.48 c0 -2.64 2.16 -4.8 4.8 -4.8 l0.84 0 c2.64 0 4.8 2.16 4.8 4.8 l0 5.24 l-6.72 0.12 l0 7.12 c0 0.84 0.64 1.52 1.48 1.52 s1.52 -0.68 1.52 -1.52 l0 -2.48 l3.72 0 l0 2.48 c0 2.88 -2.36 5.24 -5.24 5.24 z M79.562 21.08 l-0.84 0 c-0.6 0 -1.08 0.52 -1.08 1.12 l0 1.68 l3 -0.08 l0 -1.6 c0 -0.6 -0.48 -1.12 -1.08 -1.12 z M96.789 32.76 l0 7.2 l-3.68 0 l0 -0.12 c-0.36 0.08 -0.72 0.12 -1.12 0.12 c-2.8 0 -5.04 -2.24 -5.04 -5.04 l0 -4.28 c0 -1.12 0.44 -2.16 1.24 -2.96 c0.76 -0.76 1.8 -1.2 2.92 -1.2 l1.92 0 l0 -4.32 c0 -0.6 -0.52 -1.12 -1.12 -1.12 l-0.2 0 c-0.64 0 -1.12 0.52 -1.12 1.12 l0 3.04 l-3.72 0 l0 -3.04 c0 -2.68 2.16 -4.84 4.84 -4.84 l0.2 0 c2.68 0 4.84 2.16 4.84 4.84 z M91.989 36.24 c0.6 0 1.12 -0.48 1.12 -1.08 l-0.04 -4.92 l-1.96 -0.04 c-0.16 0 -0.24 0.08 -0.32 0.12 c-0.04 0.08 -0.12 0.16 -0.12 0.32 l0 4.28 c0 0.72 0.6 1.32 1.32 1.32 z M104.09599999999999 17.36 c2.64 0 4.8 2.16 4.8 4.8 l0 18 l-3.84 0 l0 -18 c0 -0.52 -0.44 -0.96 -0.96 -0.96 s-0.96 0.44 -0.96 0.96 l0 18 l-3.84 0 l0 -23.52 l3.84 0 l0 0.84 c0.32 -0.08 0.64 -0.12 0.96 -0.12 z"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="background absolute inset-0 bg-header-button-background-when-menu-open-hover"></div>
+  </div>
+  <app-category-tiles></app-category-tiles>
 </ng-container>
-

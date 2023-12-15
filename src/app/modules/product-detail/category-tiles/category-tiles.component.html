@@ -1,0 +1,48 @@
+<div class="flex lg:hidden justify-between items-center m-10">
+  <p class="text-modal-menu-second-nav-links-size font-semibold">Discover our infusions</p>
+  <div class="flex">
+    <button
+      [ngClass]="{ 'btn-disabled': currentTile === 1 }"
+      (click)="slideLeft()"
+      class="bg-pure-white flex justify-center items-center w-10 h-10 rounded-full m-1">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <button
+      [ngClass]="{ 'btn-disabled': currentTile === 6 }"
+      (click)="slideRight()"
+      class="bg-pure-white flex justify-center items-center w-10 h-10 rounded-full m-1">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</div>
+<div [@tileCarouselAnimation]="currentTile" class="tiles mt-[10px] flex w-fit lg:w-full">
+  <div
+    class="tile p-6 relative w-[calc(100vw-80px)] sm:w-[calc(50vw-40px)] lg:w-auto mx-[12px] first:mr-[10px] first:ml-[12px] sm:first:ml-0 max-lg:aspect-[9/8] lg:h-[28vw] rounded-[50px] max-lg:flex-shrink-0 lg:m-0 lg:first:mr-0 grow hover:grow-[2] overflow-hidden cursor-pointer"
+    *ngFor="let til of tilesArray"
+    [routerLink]="['/shop']" [queryParams]="{id: til.id}"
+    >
+    <div></div>
+    <p class="absolute text-[7vw] sm:text-[5vw] lg:text-[2.4vw] font-bold w-3">{{ til.title }}</p>
+    <button
+      class="absolute bottom-5 right-5 lg:right-[21%] rounded-[2.5rem] w-[40px] h-[40px] inline-flex items-center justify-end px-[11px] overflow-hidden z-[2]">
+      <span class="text-white font-semibold">discover</span>
+      <svg
+        class="stroke-white"
+        viewBox="0 0 20 20"
+        id="arrow-right"
+        width="18px"
+        height="18px"
+        stroke-width="2px">
+        <g>
+          <path fill="none" d="M0.7,10H18" stroke-linecap="round" />
+          <path fill="none" d="M10.9,2.9L18,10l-7.1,7.1" />
+        </g>
+      </svg>
+    </button>
+    <img
+      class="absolute left-[-10px] lg:left-[-30px] bottom-[-20px] h-[65%] translate-y-[18%] z-[1]"
+      [src]="til.image"
+      alt="" />
+    <div class="background"></div>
+  </div>
+</div>

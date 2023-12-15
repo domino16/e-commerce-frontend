@@ -10,10 +10,12 @@
   appTilesAnimation>
   <div
     class="tile relative p-tile-spacing aspect-[9/8] rounded-[50px] cursor-pointer overflow-hidden"
-    *ngFor="let til of tilesArray; trackBy: tilesTrackBy">
-    <p class="relative text-tile-text-size font-bold z-[1]">{{ til.title }}</p>
+    *ngFor="let til of tilesArray"
+    [routerLink]="['/shop']" [queryParams]="{id: til.id}"
+    >
+    <p class="relative text-[9vw] md:text-[5vw] lg:text-[3vw] whitespace-nowrap font-bold z-[1]">{{ til.title }}</p>
     <button
-      class="absolute bottom-5 right-5 rounded-[2.5rem] w-[40px] h-[40px] inline-flex items-center justify-end px-[11px] overflow-hidden z-[1]">
+      class="absolute bottom-5 right-5 rounded-[2.5rem] w-[40px] h-[40px] inline-flex items-center justify-end px-[11px] overflow-hidden z-[2]">
       <span class="text-white font-semibold">discover</span>
       <svg
         class="stroke-white"

@@ -94,21 +94,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   checkoutFormGroup = new FormGroup({
     customer: new FormGroup({
-      firstName: new FormControl('Dominik', [Validators.required, Validators.minLength(2)]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
 
-      lastName: new FormControl('Pietrzyk', [Validators.required, Validators.minLength(2)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
 
-      email: new FormControl('domino16-9@o2.pl', [
+      email: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]),
     }),
     shippingAddress: new FormGroup({
       street: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      city: new FormControl('Widawa', [Validators.required, Validators.minLength(2)]),
+      city: new FormControl('', [Validators.required, Validators.minLength(2)]),
       state: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required]),
-      zipCode: new FormControl('98-170', [Validators.required, Validators.minLength(2)]),
+      zipCode: new FormControl('', [Validators.required, Validators.minLength(2)]),
     }),
   });
 

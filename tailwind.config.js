@@ -53,6 +53,7 @@ module.exports = {
         'modal-menu-nav-links-size': 'clamp(48px,120/2000*100vw,120px)',
         'modal-menu-second-nav-links-size': 'clamp(20px,24/1400*100vw,24px)',
         'tile-text-size': 'clamp(40px,55/2000*100vw,55px)',
+        'clamp-medium': 'clamp(20px, 22/1400*100vw,22px)',
       },
       spacing: {
         'tile-spacing': 'clamp(16px,calc(30/14.4*1vw),30px)2.5rem',

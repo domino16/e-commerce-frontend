@@ -1,0 +1,51 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.25rem;
+}
+
+.accordion .title {
+
+
+&::after {
+    content: '';
+    width: 14px;
+    height: 2px;
+    position: absolute;
+    right: 40px;
+    background-color: black;
+  }
+
+  &::before {
+    transition: all 0.3s;
+    content: '';
+    width: 14px;
+    height: 2px;
+    position: absolute;
+    right: 40px;
+    background-color: black;
+    transform: rotate(-90deg);
+  }
+
+}
+
+.accordion.expanded .title{
+    
+  &::before {
+    content: '';
+    width: 14px;
+    height: 2px;
+    position: absolute;
+    right: 40px;
+    background-color: black;
+    transform: rotate(0deg);
+  }
+}
+
+.perks{
+    img{
+        
+        height: 100px;
+        object-fit: cover;
+    }
+}
