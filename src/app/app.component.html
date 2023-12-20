@@ -11,3 +11,4 @@
 <app-modal-cart (closeCartEvent)="closeCart()" *ngIf="isCartOpen$ | async" @openCloseCart></app-modal-cart>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
+<app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>

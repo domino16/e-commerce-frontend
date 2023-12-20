@@ -4,7 +4,7 @@
     <ul
       class="nav-main text-5xl md:text-modal-menu-nav-links-size font-semibold  px-[20px] sm:px-[60px] pt-[100px]  sm:pt-[130px]">
       <li class="py-[6px]">
-        <a
+        <a (click)="closeMenu()"
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
           ><span>products</span></a
@@ -12,6 +12,7 @@
       </li>
       <li class="py-[6px]">
         <a
+        (click)="closeMenu()"
           routerLink="/shop"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
           ><span>shop</span></a
@@ -19,6 +20,7 @@
       </li>
       <li class="py-[6px]">
         <a
+        (click)="closeMenu()"
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
           ><span>portfolio</span></a
@@ -30,6 +32,7 @@
       <ul>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>about me</span></a
@@ -37,6 +40,7 @@
         </li>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>retailers</span></a
@@ -44,6 +48,7 @@
         </li>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>wholesale</span></a
@@ -51,6 +56,7 @@
         </li>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>faq</span></a
@@ -58,6 +64,7 @@
         </li>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>contact</span></a
@@ -67,13 +74,14 @@
       <ul class="flex flex-col">
         <li>
           <a
-            routerLink="/"
+            (click)="openCart()" (keydown)="openCart()"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>cart</span></a
           >
         </li>
         <li>
           <a
+          (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span>PL</span></a

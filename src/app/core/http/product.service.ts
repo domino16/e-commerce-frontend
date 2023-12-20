@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Product } from '../interfaces/product';
 import { ProductCategory } from '../interfaces/product-category';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ParamMap } from '@angular/router';
 import { Page } from '../interfaces/page';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProductService {
 
   constructor(
     private httpClient: HttpClient,
-    private route: ActivatedRoute,
+
   ) {}
 
   getAllProdcts(paramMap: ParamMap) {
@@ -44,7 +44,7 @@ export class ProductService {
     paramMap.keys.forEach(key => {
       httpParams = httpParams.set(key, paramMap.get(key)!);
     });
-    httpParams = httpParams.appendAll({'size': 4});
+    httpParams = httpParams.appendAll({'size': 24});
    
     return this.httpClient.get<GetResponseProducts>(url, {params: httpParams});
   }

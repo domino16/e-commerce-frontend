@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef} from '@angular/core';
 import { gsap } from 'gsap';
 
 
@@ -9,7 +9,6 @@ import { gsap } from 'gsap';
 export class TilesAnimationDirective implements AfterViewInit {
   constructor(
     private el: ElementRef,
-    private renderer: Renderer2,
   ) {}
 
   ngAfterViewInit(): void {

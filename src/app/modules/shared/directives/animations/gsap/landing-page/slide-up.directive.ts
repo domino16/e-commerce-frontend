@@ -6,7 +6,9 @@ import { gsap } from 'gsap';
   standalone: true,
 })
 export class SlideUpDirective implements AfterViewInit {
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) {
+    
+  }
 
   ngAfterViewInit(): void {
     const animate = gsap.timeline().from(this.el.nativeElement.children, {

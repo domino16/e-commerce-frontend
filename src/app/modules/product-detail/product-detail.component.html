@@ -1,21 +1,24 @@
 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
 <ng-container *ngIf="product$ | async as product">
-  <div class="w-full lg:w-1/2 self-end">
-    <img
-      class="w-full h-full backdrop-brightness-95 rounded-[50px]"
+  <div appImgScrollTrigger
+    class="scroll-trigger-parent lg:flex lg:absolute lg:top-[-100px] justify-end items-end w-full h-full lg:w-[calc(50%-20px)] lg:h-[calc(100vh-20px)] self-end">
+    <div @productImageAnimation class="scroll-trigger-child lg:absolute w-full h-full lg:h-[calc(100%-120px)] backdrop-brightness-95 rounded-[50px] flex items-center justify-center pb-[5vh] max-lg:pt-[5vh]">
+      <img
+      class="w-full h-[90%] lg:h-[calc(75vh-50px)] backdrop-brightness-95 object-contain "
       src="{{ product.imageUrl }}"
       alt="" />
+    </div>
   </div>
-  <div class="w-full lg:w-1/2">
+  <div @productPageBodyAnimation class="w-full lg:w-1/2">
     <div class="mx-5">
-      <h2 class="text-[clamp(48px,120/2000*100vw,120px)] my-5">{{ product.name }}</h2>
-      <p class="my-5 text-xl font-semibold">{{ product.unitPrice | currency }}</p>
+      <h2 class="product-name text-[clamp(48px,120/2000*100vw,120px)] my-5 font-semibold">{{ product.name }}</h2>
+      <p class="price my-5 text-xl font-medium  ">{{ product.unitPrice | currency }}</p>
       <button
-        class="rounded-[50px] text-white bg-black py-3 px-7 font-semibold text-xl"
+        class="add-cart-btn rounded-[50px] text-white bg-black py-3 px-7 font-semibold text-xl whitespace-nowrap"
         (click)="addToCart(product.id, product.name, product.imageUrl, product.unitPrice, 1)">
         Add to cart
       </button>
-      <p class="px-4 py-12 font-medium text-lg">{{ product.description }}</p>
+      <p class="product-description px-4 py-12 font-medium text-lg">{{ product.description }}</p>
 
       <!--  accordions -->
 
@@ -53,7 +56,7 @@
       </div>
     </div>
 
-    <div
+    <div appPerksAnimationOnViewportEnter
       class="perks grid grid-cols-2 sm:grid-cols-3 w-full justify-center items-center gap-y-7 mt-12">
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/organic.svg" alt="" />
@@ -86,8 +89,11 @@
       class="w-full"
       src="../../../assets/set-coffee-beans-ground-coffee-shape-world-map-top-view-dark-background_187166-18617.avif"
       alt="coffe world" />
-    <div class="absolute inset-0 flex justify-center items-center z-[1]">
-      <svg class="p-[10%] translate-x-[-5%]" viewBox="0 0 369.9130434782609 89.04387512457164" fill="#f4f4f4">
+    <div class="end-trigger absolute inset-0 flex justify-center items-center z-[1]">
+      <svg
+        class="p-[10%] translate-x-[-5%]"
+        viewBox="0 0 369.9130434782609 89.04387512457164"
+        fill="#f4f4f4">
         <g
           featurekey="symbolFeature-0"
           transform="matrix(0.5861141589482338,0,0,0.5861141589482338,23.79623395895906,15.314692211032515)">
