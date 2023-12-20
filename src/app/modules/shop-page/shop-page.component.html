@@ -24,7 +24,7 @@
 
 <div  class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mx-7 ">
   <a appProductBoxOnViewportEnterAnimation routerLink="/shop/{{product.id}}" *ngFor="let product of products$ | async">
-    <img class="bg-[#efefef] w-full " [src]="product.imageUrl" alt="product image" />
+    <img class="bg-[#f3f3f3] w-full p-10" [src]="product.imageUrl" alt="product image" />
     <p>{{ product.name }}</p>
     <p>{{ product.unitPrice }}$</p>
   </a>
