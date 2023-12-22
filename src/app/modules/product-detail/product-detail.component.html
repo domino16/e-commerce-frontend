@@ -3,8 +3,8 @@
   <div appImgScrollTrigger
     class="scroll-trigger-parent lg:flex lg:absolute lg:top-[-100px] justify-end items-end w-full h-full lg:w-[calc(50%-20px)] lg:h-[calc(100vh-20px)] self-end">
     <div @productImageAnimation class="scroll-trigger-child lg:absolute w-full h-full lg:h-[calc(100%-120px)] backdrop-brightness-95 rounded-[50px] flex items-center justify-center pb-[5vh] max-lg:pt-[5vh]">
-      <img
-      class="w-full h-[90%] lg:h-[calc(75vh-50px)] backdrop-brightness-95 object-contain "
+      <img appReplaceImage [imageUrl]="product.imageUrl" [secondImageUrl]="product.secondImageUrl"
+      class="w-full h-[90%] lg:h-[calc(75vh-50px)] backdrop-brightness-95 object-contain transition-opacity duration-500"
       src="{{ product.imageUrl }}"
       alt="" />
     </div>

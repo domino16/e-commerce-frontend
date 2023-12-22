@@ -5,6 +5,7 @@ export interface Product {
     description: string;
     unitPrice: number;
     imageUrl: string;
+    secondImageUrl: string;
     active: boolean;
     unitsInStock: number;
     dateCreated: Date;

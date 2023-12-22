@@ -9,13 +9,14 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 import { CategoryTilesComponent } from './category-tiles/category-tiles.component';
 import { ImgScrollTriggerDirective } from '../shared/directives/animations/gsap/product-detail-page/img-scroll-trigger.directive';
 import { PerksAnimationOnViewportEnterDirective } from '../shared/directives/animations/gsap/product-detail-page/perks-animation-on-viewport-enter.directive';
+import { ReplaceImageDirective } from '../shared/directives/animations/replace-image.directive';
 
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, CategoryTilesComponent, ImgScrollTriggerDirective, PerksAnimationOnViewportEnterDirective],
+  imports: [CommonModule, CategoryTilesComponent, ImgScrollTriggerDirective, PerksAnimationOnViewportEnterDirective, ReplaceImageDirective],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
   animations: [accordionDivAnimationTrigger, productImageAnimationTrigger, productPageBodyAnimationTrigger],

@@ -1,15 +1,27 @@
-<div appHeroAnimationOnScroll class="hero-image absolute top-0 right-0 w-full h-screen overflow-hidden bg-black">
-    <video #videoPlayer class="relative top-[-50px] w-full h-[114vh] object-cover" onloadedmetadata="this.muted = true"  autoplay loop id="hero-video">
-      <source src="../../../assets/CoffeeLoop.webm" type="video/webm">
-      Twoja przeglądarka nie obsługuje odtwarzacza wideo.
-    </video>
+<div
+  appHeroAnimationOnScroll
+  class="hero-image absolute top-0 right-0 w-full h-screen overflow-hidden bg-black">
+  <video
+    #videoPlayer
+    class="relative top-[-50px] w-full h-[114vh] object-cover"
+    onloadedmetadata="this.muted = true"
+    autoplay
+    loop
+    id="hero-video">
+    <source src="../../../assets/CoffeeLoop.webm" type="video/webm" />
+    Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+  </video>
   <div class="shadow-background absolute inset-0 bg-header-button-background-when-menu-open"></div>
   <h3
-@shopPageHeroTextAnimation
-    class="text-pure-white font-bold text-[12vw] sm:text-[7vw] xl:text-[6vw] absolute bottom-[30vh] sm:bottom-[25vh] left-0 p-12 sm:px-32 text-center ">
+    @shopPageHeroTextAnimation
+    class="text-pure-white font-bold text-[12vw] sm:text-[7vw] xl:text-[6vw] absolute bottom-[30vh] sm:bottom-[25vh] left-0 p-12 sm:px-32 text-center">
     Awaken Your Senses with Every Sip
   </h3>
-  <button (click)="scrollToProducts()" class="absolute bottom-3 left-0 right-0 text-pure-white text-4xl"><i appScrollArrowAnimation class="fa-solid fa-angle-down" aria-hidden="true"></i></button>
+  <button
+    (click)="scrollToProducts()"
+    class="absolute bottom-3 left-0 right-0 text-pure-white text-4xl">
+    <i appScrollArrowAnimation class="fa-solid fa-angle-down" aria-hidden="true"></i>
+  </button>
 </div>
 <div class="flex justify-between mt-[calc(100vh-76px)] m-6">
   <button class="rounded-[50px] text-white bg-black py-3 px-7" (click)="openFilterMenu()">
@@ -18,13 +30,22 @@
   <app-sort></app-sort>
 </div>
 
-<app-filter @openCloseFilterMenuAnimation
-  *ngIf="isFilterMenuOpen | async"
- ></app-filter>
+<app-filter @openCloseFilterMenuAnimation *ngIf="isFilterMenuOpen | async"></app-filter>
 
-<div  class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mx-7 ">
-  <a appProductBoxOnViewportEnterAnimation routerLink="/shop/{{product.id}}" *ngFor="let product of products$ | async">
-    <img class="bg-[#f3f3f3] w-full p-10" [src]="product.imageUrl" alt="product image" />
+<div class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 mx-7">
+  <a
+    appProductBoxOnViewportEnterAnimation
+    routerLink="/shop/{{ product.id }}"
+    *ngFor="let product of products$ | async">
+    <div class="bg-[#f3f3f3]">
+      <img
+        appReplaceImage
+        [imageUrl]="product.imageUrl"
+        [secondImageUrl]="product.secondImageUrl"
+        class="w-full p-10 transition-opacity trnasition duration-500 ease-in-out-expo"
+        [src]="product.imageUrl"
+        alt="product image" />
+    </div>
     <p>{{ product.name }}</p>
     <p>{{ product.unitPrice }}$</p>
   </a>

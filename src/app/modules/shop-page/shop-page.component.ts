@@ -25,6 +25,7 @@ import { ScrollArrowAnimationDirective } from '../shared/directives/animations/g
 import { HeroAnimationOnScrollDirective } from '../shared/directives/animations/gsap/shop-page/hero-animation-on-scroll.directive';
 import { shopPageHeroTextAnimationTrigger } from 'src/app/animations/shop-page.animations';
 import { ProductBoxOnViewportEnterAnimationDirective } from '../shared/directives/animations/gsap/shop-page/product-box-on-viewport-enter-animation.directive';
+import { ReplaceImageDirective } from '../shared/directives/animations/replace-image.directive';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,6 +40,7 @@ import { ProductBoxOnViewportEnterAnimationDirective } from '../shared/directive
     ScrollArrowAnimationDirective,
     HeroAnimationOnScrollDirective,
     ProductBoxOnViewportEnterAnimationDirective,
+    ReplaceImageDirective
   ],
   templateUrl: './shop-page.component.html',
   styleUrls: ['./shop-page.component.scss'],
@@ -68,6 +70,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
   );
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  @ViewChild('ad') productImages!: ElementRef;
 
   ngOnInit(): void {
     this.scrollTop();
@@ -113,4 +116,6 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  
 }
