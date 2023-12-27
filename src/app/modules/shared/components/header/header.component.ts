@@ -1,6 +1,6 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BurgerBtnComponent } from './burger-btn/burger-btn.component';
@@ -25,7 +25,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class HeaderComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
-  private readonly store = inject(Store);
+  private readonly store = inject(Store); 
 
   @Input() isStickyHeader: boolean = false;
 
@@ -33,9 +33,14 @@ export class HeaderComponent implements OnInit {
   isMenuTextWhite: boolean = false;
   isMobile$: Observable<boolean> = this.layoutService.isMobile$;
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
+  localeToChangeLanguage:string;
 
   //routes when header text color is white
   whiteRoutes = ['shop'];
+  
+  constructor(@Inject(LOCALE_ID) public locale: string) {
+ locale === 'pl' ? this.localeToChangeLanguage = 'en_US' : this.localeToChangeLanguage = 'pl'
+  }
 
   ngOnInit(): void {
     combineLatest([this.isMenuOpen$, this.isMobile$, this.store.select(selectCurrentRoute)])
@@ -72,4 +77,6 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
+
+
 }

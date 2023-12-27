@@ -4,6 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "e-commerce-app": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": { "pl": { "translation": "src/locale/messages.pl.xlf"} }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,18 +21,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "aot": true,
+            "i18nMissingTranslation": "warning",
             "outputPath": "dist/e-commerce-app/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss"
@@ -36,6 +38,7 @@
             "scripts": []
           },
           "configurations": {
+            
             "production": {
               "budgets": [
                 {
@@ -64,6 +67,12 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "en-US": { 
+              "localize": ["en-US"] 
+            },
+            "pl":{
+              "localize": ["pl"]
             }
           },
           "defaultConfiguration": "production"
@@ -76,6 +85,12 @@
             },
             "development": {
               "browserTarget": "e-commerce-app:build:development"
+            },
+            "en-US": {
+              "browserTarget": "e-commerce-app:build:development,en-US"
+            },
+            "pl":{
+              "browserTarget": "e-commerce-app:build:development,pl"
             }
           },
           "defaultConfiguration": "development"
@@ -89,19 +104,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -150,9 +157,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -169,19 +174,13 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics",
-      "@ngrx/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics", "@ngrx/schematics"]
   }
 }

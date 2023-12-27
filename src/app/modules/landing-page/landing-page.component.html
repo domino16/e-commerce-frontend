@@ -1,8 +1,8 @@
 <h2
   class="flex flex-col leading-[1] px-[20px] md:px-[60px] pt-20 md:pt-h2-landing-page-padding-top text-[48px] text-black font-bold md:text-[clamp(48px,120/2000*100vw,120px)]"
   appSlideUp>
-  <span> our energy</span>
-  <span class="text-link-hover">infusions</span>
+  <span i18n> our energy</span>
+  <span i18n class="text-link-hover">infusions</span>
 </h2>
 
 <div
@@ -16,7 +16,7 @@
     <p class="relative text-[9vw] md:text-[5vw] lg:text-[3vw] whitespace-nowrap font-bold z-[1]">{{ til.title }}</p>
     <button
       class="absolute bottom-5 right-5 rounded-[2.5rem] w-[40px] h-[40px] inline-flex items-center justify-end px-[11px] overflow-hidden z-[2]">
-      <span class="text-white font-semibold">discover</span>
+      <span i18n class="text-white font-semibold">discover</span>
       <svg
         class="stroke-white"
         viewBox="0 0 20 20"
@@ -33,7 +33,7 @@
     <img
       class="absolute left-[-10px] bottom-[-20px] w-[100%] translate-y-1/4 z-[1]"
       [src]="til.image"
-      alt="" />
+      alt="tile image" />
     <div class="background"></div>
   </div>
 </div>

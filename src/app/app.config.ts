@@ -27,6 +27,6 @@ export const appConfig: ApplicationConfig = {
     provideStore({ router: routerReducer, filter: filterReducer}),
     provideRouterStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects()
+    provideEffects(),
 ],
 };

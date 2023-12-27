@@ -26,21 +26,21 @@
     </div>
 
     <form [formGroup]="sortForm" class="flex flex-col text-lg pb-20">
-      <legend class="font-bold text-xl border-b-[1px] border-secondary mb-1">
+      <legend i18n class="font-bold text-xl border-b-[1px] border-secondary mb-1">
         Choose sort type:
       </legend>
 
       <input type="radio" id="relevance" formControlName="sort" value="" />
-      <label for="relevance">Relevance</label>
+      <label i18n for="relevance">Relevance</label>
 
       <input type="radio" id="highPrice" formControlName="sort" value="unitPrice,desc" />
-      <label for="highPrice">Price High to Low</label>
+      <label i18n for="highPrice">Price High to Low</label>
 
       <input type="radio" id="lowPrice" formControlName="sort" value="unitPrice" />
-      <label for="lowPrice">Price Low to High</label>
+      <label i18n for="lowPrice">Price Low to High</label>
 
       <input type="radio" id="name" formControlName="sort" value="name" />
-      <label for="name">Product Name</label>
+      <label i18n for="name">Product Name</label>
     </form>
   </div>
   <div class="background absolute inset-0 bg-overlay-background -z-[1]"></div>

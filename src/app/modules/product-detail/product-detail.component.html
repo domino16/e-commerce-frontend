@@ -1,19 +1,28 @@
 <!-- eslint-disable @angular-eslint/template/no-call-expression -->
 <ng-container *ngIf="product$ | async as product">
-  <div appImgScrollTrigger
+  <div
+    appImgScrollTrigger
     class="scroll-trigger-parent lg:flex lg:absolute lg:top-[-100px] justify-end items-end w-full h-full lg:w-[calc(50%-20px)] lg:h-[calc(100vh-20px)] self-end">
-    <div @productImageAnimation class="scroll-trigger-child lg:absolute w-full h-full lg:h-[calc(100%-120px)] backdrop-brightness-95 rounded-[50px] flex items-center justify-center pb-[5vh] max-lg:pt-[5vh]">
-      <img appReplaceImage [imageUrl]="product.imageUrl" [secondImageUrl]="product.secondImageUrl"
-      class="w-full h-[90%] lg:h-[calc(75vh-50px)] backdrop-brightness-95 object-contain transition-opacity duration-500"
-      src="{{ product.imageUrl }}"
-      alt="" />
+    <div
+      @productImageAnimation
+      class="scroll-trigger-child lg:absolute w-full h-full lg:h-[calc(100%-120px)] backdrop-brightness-95 rounded-[50px] flex items-center justify-center pb-[5vh] max-lg:pt-[5vh]">
+      <img
+        appReplaceImage
+        [imageUrl]="product.imageUrl"
+        [secondImageUrl]="product.secondImageUrl"
+        class="w-full h-[90%] lg:h-[calc(75vh-50px)] backdrop-brightness-95 object-contain transition-opacity duration-500"
+        src="{{ product.imageUrl }}"
+        alt="" />
     </div>
   </div>
   <div @productPageBodyAnimation class="w-full lg:w-1/2">
     <div class="mx-5">
-      <h2 class="product-name text-[clamp(48px,120/2000*100vw,120px)] my-5 font-semibold">{{ product.name }}</h2>
-      <p class="price my-5 text-xl font-medium  ">{{ product.unitPrice | currency }}</p>
+      <h2 class="product-name text-[clamp(48px,120/2000*100vw,120px)] my-5 font-semibold">
+        {{ product.name }}
+      </h2>
+      <p class="price my-5 text-xl font-medium">{{ product.unitPrice | currency }}</p>
       <button
+        i18n
         class="add-cart-btn rounded-[50px] text-white bg-black py-3 px-7 font-semibold text-xl whitespace-nowrap"
         (click)="addToCart(product.id, product.name, product.imageUrl, product.unitPrice, 1)">
         Add to cart
@@ -29,7 +38,7 @@
         (keydown)="toggleAccordion(accordion1)"
         class="accordion relative border-[1px] border-black rounded-[50px] p-4 cursor-pointer">
         <div class="title flex items-center justify-between h-[38px] px-5 text-xl font-semibold">
-          <p>Ingredients</p>
+          <p i18n>Ingredients</p>
         </div>
         <ul class="my-8 font-semibold text-lg list-disc px-10">
           <li><p>Lorem, ipsum dolor.</p></li>
@@ -45,7 +54,7 @@
         (keydown)="toggleAccordion(accordion2)"
         class="accordion relative border-[1px] border-black rounded-[50px] p-4 overflow-hidden cursor-pointer">
         <div class="title flex items-center justify-between h-[38px] px-5 text-xl font-semibold">
-          <p>No bullsh!t</p>
+          <p i18n>No bullsh!t</p>
         </div>
         <ul class="my-8 font-semibold text-lg list-disc px-10">
           <li><p>Lorem, ipsum dolor.</p></li>
@@ -56,31 +65,32 @@
       </div>
     </div>
 
-    <div appPerksAnimationOnViewportEnter
+    <div
+      appPerksAnimationOnViewportEnter
       class="perks grid grid-cols-2 sm:grid-cols-3 w-full justify-center items-center gap-y-7 mt-12">
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/organic.svg" alt="" />
-        <p class="text-lg font-semibold">organic</p>
+        <p i18n class="text-lg font-semibold">organic</p>
       </div>
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/reshot-icon-enviroment-love-XAE29M876W.svg" alt="" />
-        <p class="text-lg font-semibold">enironment love</p>
+        <p i18n class="text-lg font-semibold">enironment love</p>
       </div>
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/reshot-icon-global-shipping-D2ERSCNG3M.svg" alt="" />
-        <p class="text-lg font-semibold">global shipping</p>
+        <p i18n class="text-lg font-semibold">global shipping</p>
       </div>
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/reshot-icon-placeholder-25JE3QLCM7.svg" alt="" />
-        <p class="text-lg font-semibold">made in Poland</p>
+        <p i18n class="text-lg font-semibold">made in Poland</p>
       </div>
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/reshot-icon-premium-quality-4DBYQUJHTX.svg" alt="" />
-        <p class="text-lg font-semibold">premium quality</p>
+        <p i18n class="text-lg font-semibold">premium quality</p>
       </div>
       <div class="flex flex-col items-center justify-center w-full h-full">
         <img src="../../../assets/svg-icons/reshot-icon-recycled-goods-M27UJ9REBQ.svg" alt="" />
-        <p class="text-lg font-semibold">recyclable</p>
+        <p i18n class="text-lg font-semibold">recyclable</p>
       </div>
     </div>
   </div>

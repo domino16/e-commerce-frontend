@@ -45,12 +45,12 @@
     <li
       class="mr-[30px]"
       [ngStyle]="{ transform: (isMenuOpen$ | async) ? 'translateY(-100px)' : 'translateY(0)' }">
-      <a routerLink="/"><span>products</span></a>
+      <a routerLink="/"><span i18n >products</span></a>
     </li>
     <li
       class="mr-[30px]"
       [ngStyle]="{ transform: (isMenuOpen$ | async) ? 'translateY(-100px)' : 'translateY(0)' }">
-      <a routerLink="/shop"><span>shop</span></a>
+      <a routerLink="/shop"><span i18n>shop</span></a>
     </li>
     <li [ngStyle]="{ transform: (isMenuOpen$ | async) ? 'translateY(-100px)' : 'translateY(0)' }">
       <a routerLink="/"><span>portfolio</span></a>
@@ -62,10 +62,10 @@
   [ngStyle]="{ color: headerTextColor }">
   <ul class="flex h-[40px] items-center">
     <li class="hidden md:flex mr-[30px]">
-      <a href="https://github.com/domino16/e-commerce-frontend"><span>see github repository</span></a>
+      <a href="https://github.com/domino16/e-commerce-frontend"><span i18n>see github repository</span></a>
     </li>
     <li class="hidden md:flex mr-[30px]">
-      <a routerLink="/"><span>PL</span></a>
+      <a href="/{{localeToChangeLanguage}}/"><span i18n>PL</span></a>
     </li>
     <li>
       <button

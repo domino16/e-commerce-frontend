@@ -1,12 +1,13 @@
 <div class="relative flex flex-col items-center justify-center w-[80dvw] h-[500px] bg-pure-white rounded-[30px] p-5">
     <ng-container *ngIf="isSuccess">
-    <p class="text-6xl text-center font-semibold text-success-green">Payment Successful</p>
-    <p class="mt-3 text-center ">Tracking Number: {{trackingNumber}}</p>
+    <p i18n class="text-6xl text-center font-semibold text-success-green">Payment Successful</p>
+    <p class="mt-3 text-center "><span>Tracking Number:</span> {{trackingNumber}}</p>
 </ng-container>
 <ng-container *ngIf="!isSuccess">
-     <p class="text-6xl text-center font-semibold text-color-danger">Payment Failed</p>
+     <p i18n class="text-6xl text-center font-semibold text-color-danger">Payment Failed</p>
     <p class="mt-3 text-center " >{{failureMessage}}</p></ng-container>
     <button 
+    i18n 
     routerLink="/shop"
     class="absolute bottom-3 px-8 py-4 my-4 bg-black rounded-[30px] text-white"
    >

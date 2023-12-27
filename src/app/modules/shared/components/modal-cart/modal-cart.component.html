@@ -12,7 +12,7 @@
       <path d="M16.6,18.4H4.4L1.8,7.9h17.5L16.6,18.4L16.6,18.4z" fill="none" />
       <path d="M7.2,5V2h6.4v3" fill="none" />
     </svg>
-    <p class="text-[18px] font-bold">Your cart({{ items.length }})</p>
+    <p class="text-[18px] font-bold"><span i18n>Your cart</span>({{ items.length }})</p>
     <button
       class="transition ease-in-out-expo duration-[600ms] bg-white hover:bg-secondary rounded-[100%] w-[40px] h-[40px] inline-flex items-center justify-center"
       (click)="closeCart()">
@@ -30,7 +30,7 @@
     </button>
   </div>
   <div *ngIf="items.length === 0">
-    <p class="mt-10 text-center text-xl font-bold">Your cart is empty</p>
+    <p i18n class="mt-10 text-center text-xl font-bold">Your cart is empty</p>
   </div>
   <ng-container *ngIf="items.length > 0">
     <div class="cart-lines w-full h-full px-[40px] overflow-auto">
@@ -48,9 +48,9 @@
       routerLink="/checkout"
       (click)="closeCart()"
         class="flex justify-center items-center w-full rounded-[4.375rem] bg-black text-white text-[20px] font-bold h-[60px] px-7">
-        <span class="pb-[2px] leading-[1]">proceed to checkout</span>
+        <span i18n class="pb-[2px] leading-[1]">proceed to checkout</span>
       </button>
-      <p class="flex justify-center text-[14px] font-light mt-[20px] leading-[1]">
+      <p i18n class="flex justify-center text-[14px] font-light mt-[20px] leading-[1]">
         Taxes and shipping will be calculated at checkout
       </p>
     </div>

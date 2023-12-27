@@ -2,8 +2,8 @@
   <div
     class="subscribe flex flex-col bg-pure-white p-8 lg:p-10 justify-between rounded-[30px] mx-1 sm:mx-3 sm:ml-6 my-3 sm:w-7/12">
     <div>
-      <h4 class="text-clamp-medium font-bold">Let's keep in touch</h4>
-      <p class="font-medium my-2 text-lg">
+      <h4 i18n class="text-clamp-medium font-bold">Let's keep in touch</h4>
+      <p i18n class="font-medium my-2 text-lg">
         Subscribe to keep up with fresh news and exciting updates. We promise not to spam you!
       </p>
     </div>
@@ -25,19 +25,20 @@
 
   <div
     class="social-media flex flex-col bg-pure-white p-5 lg:p-10 justify-between rounded-[30px] mx-1 sm:mx-3 sm:mr-6 my-3 sm:w-5/12">
-    <p class="text-[clamp(22px,32/2000*100vw,32px)] font-bold mb-1">Social Media Links</p>
+    <p i18n class="text-[clamp(22px,32/2000*100vw,32px)] font-bold mb-1">Social Media Links</p>
 
-    <a href="https://github.com/domino16"
-      class=" hover:text-secondary text-lg transition-[color] duration-300 ease-in-out-expo p-1 lg:p-2">
+    <a
+      href="https://github.com/domino16"
+      class="hover:text-secondary text-lg transition-[color] duration-300 ease-in-out-expo p-1 lg:p-2">
       <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
     </a>
     <a
-    href="https://www.facebook.com/pietrzykdominik/"
+      href="https://www.facebook.com/pietrzykdominik/"
       class="cursor-pointer hover:text-secondary text-lg transition-[color] duration-300 ease-in-out-expo p-1 lg:p-2">
       <i class="fa-brands fa-facebook" aria-hidden="true"></i> Facebook
     </a>
     <a
-    href="https://www.linkedin.com/in/dominik-pietrzyk-02966225a/"
+      href="https://www.linkedin.com/in/dominik-pietrzyk-02966225a/"
       class="cursor-pointer hover:text-secondary text-lg transition-[color] duration-300 ease-in-out-expo p-1 lg:p-2">
       <i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
     </a>
@@ -52,14 +53,14 @@
         <a
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-          ><span>products</span></a
+          ><span i18n>products</span></a
         >
       </li>
       <li class="py-[6px]">
         <a
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-          ><span>shop</span></a
+          ><span i18n>shop</span></a
         >
       </li>
       <li class="py-[6px]">
@@ -77,51 +78,52 @@
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>about me</span></a
+            ><span i18n>about me</span></a
           >
         </li>
         <li>
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>retailers</span></a
+            ><span i18n>retailers</span></a
           >
         </li>
         <li>
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>wholesale</span></a
+            ><span i18n>wholesale</span></a
           >
         </li>
         <li>
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>faq</span></a
+            ><span i18n>faq</span></a
           >
         </li>
         <li>
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>contact</span></a
+            ><span i18n>contact</span></a
           >
         </li>
       </ul>
       <ul class="flex flex-col">
         <li>
           <a
-            (click)="openCart()" (keydown)="openCart()"
+            (click)="openCart()"
+            (keydown)="openCart()"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>cart</span></a
+            ><span i18n>cart</span></a
           >
         </li>
         <li>
           <a
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo cursor-pointer"
-            ><span>PL</span></a
+            ><span i18n>PL</span></a
           >
         </li>
       </ul>

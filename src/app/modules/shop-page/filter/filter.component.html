@@ -22,10 +22,10 @@
     <legend class="font-bold text-xl border-b-[1px] border-secondary mb-1">Choose category:</legend>
 
     <input type="radio" id="all" formControlName="category" value="" />
-    <label for="all">All</label>
+    <label i18n  for="all">All</label>
 
     <input type="radio" id="coffee" formControlName="category" value="1" />
-    <label for="coffee">Coffee Beans</label>
+    <label i18n  for="coffee">Coffee Beans</label>
 
     <input type="radio" id="iceCoffee" formControlName="category" value="2" />
     <label for="iceCoffee">Ice coffee</label>
@@ -34,16 +34,16 @@
     <label for="capsule">Coffee capsule</label>
 
     <input type="radio" id="mugs" formControlName="category" value="4" />
-    <label for="mugs">Mugs</label>
+    <label i18n  for="mugs">Mugs</label>
 
     <input type="radio" id="yerba" formControlName="category" value="5" />
     <label for="yerba">Yerba</label>
 
     <input type="radio" id="clothes" formControlName="category" value="6" />
-    <label for="clothes">Clothes</label>
+    <label i18n  for="clothes">Clothes</label>
   </form>
   <div class="flex justify-end">
-    <button class="flex rounded-[50px] text-white bg-black py-3 px-9 mt-3" (click)="filter()">
+    <button i18n  class="flex rounded-[50px] text-white bg-black py-3 px-9 mt-3" (click)="filter()">
       Filter
     </button>
   </div>

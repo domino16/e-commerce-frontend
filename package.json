@@ -54,6 +54,7 @@
     "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "~16.2.2",
     "@angular/compiler-cli": "^16.2.0",
+    "@angular/localize": "^16.2.8",
     "@ngrx/eslint-plugin": "^16.2.0",
     "@ngrx/schematics": "^16.3.0",
     "@nguniversal/builders": "^16.2.0",

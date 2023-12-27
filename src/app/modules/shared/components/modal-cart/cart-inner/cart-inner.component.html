@@ -37,7 +37,7 @@
           <span class="leading-[20px] mx-auto">+</span>
         </button>
       </div>
-      <div class="flex flex-col items-end"> <p *ngIf="item.quantity > 1" class="text-link-hover text-sm">per item {{item.unitPrice | currency: "USD"}}</p>
+      <div class="flex flex-col items-end"> <p *ngIf="item.quantity > 1" class="text-link-hover text-sm"><span i18n >per item</span> {{item.unitPrice | currency: "USD"}}</p>
       <p>{{item.quantity * item.unitPrice| currency: "USD"}}</p></div>
      
     </div>

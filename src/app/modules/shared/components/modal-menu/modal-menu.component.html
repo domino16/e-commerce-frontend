@@ -1,26 +1,31 @@
-<div
-  class="nav flex h-screen w-full lg:w-2/3 z-[2] whitespace-nowrap">
-  <div class="nav-inner flex flex-col justify-between bg-white w-full h-full" [ngClass]="{'nav-inner-desktop': (isMobile$ | async) === false, 'nav-inner-mobile' : isMobile$ | async}" >
+<div class="nav flex h-screen w-full lg:w-2/3 z-[2] whitespace-nowrap">
+  <div
+    class="nav-inner flex flex-col justify-between bg-white w-full h-full"
+    [ngClass]="{
+      'nav-inner-desktop': (isMobile$ | async) === false,
+      'nav-inner-mobile': isMobile$ | async
+    }">
     <ul
-      class="nav-main text-5xl md:text-modal-menu-nav-links-size font-semibold  px-[20px] sm:px-[60px] pt-[100px]  sm:pt-[130px]">
+      class="nav-main text-5xl md:text-modal-menu-nav-links-size font-semibold px-[20px] sm:px-[60px] pt-[100px] sm:pt-[130px]">
       <li class="py-[6px]">
-        <a (click)="closeMenu()"
+        <a
+          (click)="closeMenu()"
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-          ><span>products</span></a
+          ><span i18n>products</span></a
         >
       </li>
       <li class="py-[6px]">
         <a
-        (click)="closeMenu()"
+          (click)="closeMenu()"
           routerLink="/shop"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-          ><span>shop</span></a
+          ><span i18n>shop</span></a
         >
       </li>
       <li class="py-[6px]">
         <a
-        (click)="closeMenu()"
+          (click)="closeMenu()"
           routerLink="/"
           class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
           ><span>portfolio</span></a
@@ -32,59 +37,60 @@
       <ul>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>about me</span></a
+            ><span i18n>about me</span></a
           >
         </li>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>retailers</span></a
+            ><span i18n>retailers</span></a
           >
         </li>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>wholesale</span></a
+            ><span i18n>wholesale</span></a
           >
         </li>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>faq</span></a
+            ><span i18n>faq</span></a
           >
         </li>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>contact</span></a
+            ><span i18n>contact</span></a
           >
         </li>
       </ul>
       <ul class="flex flex-col">
         <li>
           <a
-            (click)="openCart()" (keydown)="openCart()"
+            (click)="openCart()"
+            (keydown)="openCart()"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>cart</span></a
+            ><span i18n>cart</span></a
           >
         </li>
         <li>
           <a
-          (click)="closeMenu()"
+            (click)="closeMenu()"
             routerLink="/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
-            ><span>PL</span></a
+            ><span i18n >PL</span></a
           >
         </li>
       </ul>
@@ -92,19 +98,19 @@
   </div>
 </div>
 <div
-  class="sticky top-0 flex flex-col lg:w-[calc(33.3333%+50px)] lg:justify-end lg:ml-[-50px] z-[1]" >
+  class="sticky top-0 flex flex-col lg:w-[calc(33.3333%+50px)] lg:justify-end lg:ml-[-50px] z-[1]">
   <img
     class="hidden lg:block absolute bottom-0 right-0 h-full w-full object-cover"
     src="../../../../../assets/coffee-break-2589688_1280.jpg"
     alt="cup of coffee" />
   <div
     class="box bg-pure-white py-10 px-5 sm:px-[60px] lg:px-10 font-bold text-xl lg:text-modal-menu-second-nav-links-size rounded-t-[30px] lg:rounded-[50px] lg:flex lg:flex-col lg:justify-between lg:min-h-[17.5rem] lg:ml-[50px] z-0">
-    <p class="mb-[30px] max-w-[17rem] leading-[1]">Subscribe and never miss CupOfBean again</p>
+    <p i18n  class="mb-[30px] max-w-[17rem] leading-[1]">Subscribe and never miss CupOfBean again</p>
     <div class="flex">
       <a
         href="https://github.com/domino16/e-commerce-frontend"
         class="inline-flex items-center rounded-[4.375rem] bg-black text-white h-[60px] px-7"
-        ><span class="pb-[2px] leading-[1]">see github repository</span></a
+        ><span i18n  class="pb-[2px] leading-[1]">see github repository</span></a
       >
     </div>
   </div>

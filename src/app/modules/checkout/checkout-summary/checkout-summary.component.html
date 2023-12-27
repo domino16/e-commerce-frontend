@@ -1,5 +1,5 @@
 <div class="header" >
-  <p class="text-secondary">Pay CupOfBean</p>
+  <p i18n  class="text-secondary">Pay CupOfBean</p>
   <p class="text-4xl">{{ totalPrice$ | async | currency }}</p>
 </div>
 <div class="body mt-6 flex-1 overflow-y-auto">
@@ -12,14 +12,14 @@
       <div class="flex flex-col justify-between">
         <p class="font-medium">{{ item.name }}</p>
         <p>
-          <span class="font-extralight">Quantity: </span>
+          <span i18n class="font-extralight">Quantity: </span>
           <span class="font-medium">{{ item.quantity }}</span>
         </p>
       </div>
       <div class="flex flex-col items-end justify-between">
         <p class="font-medium">{{ item.quantity * item.unitPrice | currency }}</p>
         <p class="text-secondary text-sm whitespace-nowrap" *ngIf="item.quantity > 1">
-          {{ item.unitPrice | currency }} each
+          {{ item.unitPrice | currency }} <span i18n>each</span>
         </p>
       </div>
     </div>
@@ -28,18 +28,18 @@
 </div>
   <div class="summary flex flex-col m-3 ml-[7.5rem]">
     <div class="flex justify-between py-4 font-medium">
-      <p>Subtotal</p>
+      <p i18n >Subtotal</p>
       <p>{{ totalPrice$ | async | currency }}</p>
     </div>
     <div class="flex justify-between items-center border-y-[1px] text-secondary border-y-header-button-background-in-sticky-header py-4">
       <div class="flex flex-col">
-        <p>Shipping</p>
-        <p>Ground Shipping (3-5 business days)</p>
+        <p i18n >Shipping</p>
+        <p i18n >Ground Shipping (3-5 business days)</p>
       </div>
       {{ 0 | currency }}
     </div>
     <div class="flex justify-between py-4 font-medium">
-      <p>Total due</p>
+      <p i18n >Total due</p>
       <p>{{ totalPrice$ | async | currency }}</p>
     </div>
   </div>

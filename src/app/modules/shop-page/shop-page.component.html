@@ -9,10 +9,10 @@
     loop
     id="hero-video">
     <source src="../../../assets/CoffeeLoop.webm" type="video/webm" />
-    Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+    <span>Your browser does not support video player.</span>
   </video>
   <div class="shadow-background absolute inset-0 bg-header-button-background-when-menu-open"></div>
-  <h3
+  <h3 i18n 
     @shopPageHeroTextAnimation
     class="text-pure-white font-bold text-[12vw] sm:text-[7vw] xl:text-[6vw] absolute bottom-[30vh] sm:bottom-[25vh] left-0 p-12 sm:px-32 text-center">
     Awaken Your Senses with Every Sip
@@ -24,7 +24,7 @@
   </button>
 </div>
 <div class="flex justify-between mt-[calc(100vh-76px)] m-6">
-  <button class="rounded-[50px] text-white bg-black py-3 px-7" (click)="openFilterMenu()">
+  <button i18n  class="rounded-[50px] text-white bg-black py-3 px-7" (click)="openFilterMenu()">
     Filter
   </button>
   <app-sort></app-sort>
