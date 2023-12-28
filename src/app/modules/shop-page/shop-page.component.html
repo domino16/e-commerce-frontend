@@ -47,7 +47,7 @@
         alt="product image" />
     </div>
     <p>{{ product.name }}</p>
-    <p>{{ product.unitPrice }}$</p>
+    <p>{{ product.unitPrice | currency:'USD'}}</p>
   </a>
 </div>
 

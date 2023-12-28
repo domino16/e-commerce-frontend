@@ -93,6 +93,10 @@
           <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
           <context context-type="linenumber">35,37</context>
         </context-group>
+           <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="2995600988434044148" datatype="html">
         <source> First Name is required </source>
@@ -116,6 +120,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
           <context context-type="linenumber">49,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1089712056650720142" datatype="html">
@@ -173,6 +181,10 @@
           <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
           <context context-type="linenumber">91,93</context>
         </context-group>
+                <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1376932255502995681" datatype="html">
         <source> Street is required </source>
@@ -196,6 +208,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
           <context context-type="linenumber">106,108</context>
+        </context-group>
+           <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/checkout/checkout.component.html</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="337399605496757258" datatype="html">
@@ -786,6 +802,7 @@
           <context context-type="linenumber">29,31</context>
         </context-group>
       </trans-unit>
+      
     </body>
   </file>
 </xliff>

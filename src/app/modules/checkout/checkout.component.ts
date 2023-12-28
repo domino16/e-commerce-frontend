@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, inject, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, inject, OnDestroy, Inject, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentInfo } from 'src/app/core/interfaces/payment-info';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+
   totalPrice = 0;
   orderItems: OrderItem[] = this.cartService.cartItems.map(item => {
     return {
@@ -53,13 +54,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
 
   purchase: Purchase | undefined;
+
+  defaultLocale:'pl'| 'en'
   
+  constructor(@Inject(LOCALE_ID) public locale:string){
+    locale === 'pl' ? this.defaultLocale = 'pl' : this.defaultLocale = 'en'
+  }
 
   ngOnInit() {
     this.layoutService.addOverflowHidden()
     this.stripeInitialization();
     this.countriesAndStateHandling();
-
     //subscriptions
     this.cartService.totalPrice
       .pipe(untilDestroyed(this))
@@ -71,7 +76,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   async stripeInitialization() {
-    this.stripe = await loadStripe(environment.stripeKey);
+    this.stripe = await loadStripe(environment.stripeKey, {locale:this.defaultLocale});
   }
 
   setupStripeForm() {

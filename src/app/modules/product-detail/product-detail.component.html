@@ -20,7 +20,7 @@
       <h2 class="product-name text-[clamp(48px,120/2000*100vw,120px)] my-5 font-semibold">
         {{ product.name }}
       </h2>
-      <p class="price my-5 text-xl font-medium">{{ product.unitPrice | currency }}</p>
+      <p class="price my-5 text-xl font-medium">{{ product.unitPrice | currency:"USD" }}</p>
       <button
         i18n
         class="add-cart-btn rounded-[50px] text-white bg-black py-3 px-7 font-semibold text-xl whitespace-nowrap"
