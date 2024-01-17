@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
-import { gsap } from 'gsap';
+import { gsap } from 'gsap/dist/gsap';
 @Directive({
   selector: '[appScrollArrowAnimation]',
   standalone: true,

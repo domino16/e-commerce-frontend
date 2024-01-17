@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
-import { gsap } from 'gsap';
-import { TextPlugin } from 'gsap/TextPlugin';
+import { gsap } from 'gsap/dist/gsap';
+import { TextPlugin } from 'gsap/dist/TextPlugin';
 @Directive({
   selector: '[appHeroTextAnimation]',
   standalone: true,

@@ -2,7 +2,9 @@ import { Component, ChangeDetectionStrategy, inject, Input } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { LayoutService } from 'src/app/core/services/layout.service';
 import { Observable, take } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-burger-btn',
@@ -18,8 +20,7 @@ export class BurgerBtnComponent {
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
 
   toggleMenu() {
-    // eslint-disable-next-line rxjs-angular/prefer-takeuntil
-    this.isMenuOpen$.pipe(take(1)).subscribe(isOpen => {
+    this.isMenuOpen$.pipe(untilDestroyed(this),take(1)).subscribe(isOpen => {
       isOpen ? this.layoutService.closeMenu() : this.layoutService.openMenu();
     });
   }

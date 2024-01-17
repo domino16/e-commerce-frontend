@@ -1,4 +1,4 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
+
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
 import { Component, Inject, inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
   isMobile$: Observable<boolean> = this.layoutService.isMobile$;
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
   localeToChangeLanguage:string;
-
   //routes when header text color is white
   whiteRoutes = ['shop'];
   

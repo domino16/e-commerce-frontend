@@ -32,8 +32,7 @@ export class CheckoutService {
       cca2:string
     }
 
-    // return this.http.get<{value:string, key:string}[]>('https://referential.p.rapidapi.com/v1/country', {headers})
-   return this.http.get<Country[]>('https://restcountries.com/v3.1/independent?status=true&fields=name,cca2').pipe(map((countries)=> countries.map(country => {return {value:country.name.common, key:country.cca2}}) ))
+    return this.http.get<Country[]>('https://restcountries.com/v3.1/independent?status=true&fields=name,cca2').pipe(map((countries)=> countries.map(country => {return {value:country.name.common, key:country.cca2}}) ))
      
   }
 

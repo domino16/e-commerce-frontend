@@ -60,6 +60,7 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
 
   products$: Observable<Product[]> = this.route.queryParamMap.pipe(
     switchMap(paramMap => {
+  
       return this.productService.getAllProdcts(paramMap).pipe(
         map(response => {
           this.page = response.page;

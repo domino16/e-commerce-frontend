@@ -1,4 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit, inject, OnDestroy, Inject, LOCALE_ID } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  inject,
+  OnDestroy,
+  Inject,
+  LOCALE_ID,
+  NgZone,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentInfo } from 'src/app/core/interfaces/payment-info';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,7 +17,7 @@ import { Stripe, StripeElements, loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment.development';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.component';
-import { Observable, catchError, map, noop } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Purchase } from 'src/app/core/interfaces/purchase';
 import { Address } from 'src/app/core/interfaces/address';
 import { Customer } from 'src/app/core/interfaces/customer';
@@ -27,12 +36,12 @@ import { LayoutService } from 'src/app/core/services/layout.service';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
-  private readonly layoutService = inject(LayoutService)
+  private readonly layoutService = inject(LayoutService);
   private readonly checkoutService = inject(CheckoutService);
   private readonly cartService = inject(CartService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-
+  private readonly zone = inject(NgZone);
 
   totalPrice = 0;
   orderItems: OrderItem[] = this.cartService.cartItems.map(item => {
@@ -46,23 +55,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   countries$ = this.checkoutService.getCountries();
   states$: Observable<string[]> = this.checkoutService.getStates('pl');
-
   stripe: Stripe | null = null;
   elements!: StripeElements;
   paymentInfo!: PaymentInfo;
-
   isLoading: boolean = false;
-
   purchase: Purchase | undefined;
+  defaultLocale: 'pl' | 'en';
 
-  defaultLocale:'pl'| 'en'
-  
-  constructor(@Inject(LOCALE_ID) public locale:string){
-    locale === 'pl' ? this.defaultLocale = 'pl' : this.defaultLocale = 'en'
+  constructor(@Inject(LOCALE_ID) public locale: string) {
+    locale === 'pl' ? (this.defaultLocale = 'pl') : (this.defaultLocale = 'en');
   }
 
   ngOnInit() {
-    this.layoutService.addOverflowHidden()
+    this.layoutService.addOverflowHidden();
     this.stripeInitialization();
     this.countriesAndStateHandling();
     //subscriptions
@@ -76,7 +81,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   async stripeInitialization() {
-    this.stripe = await loadStripe(environment.stripeKey, {locale:this.defaultLocale});
+    this.stripe = await loadStripe(environment.stripeKey, { locale: this.defaultLocale });
   }
 
   setupStripeForm() {
@@ -164,9 +169,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     })
       .then(result => {
         if (result.error) {
-          this.router.navigate(['payment-status'], {
-            relativeTo: this.route,
-            queryParams: { redirect_status: 'failed', error_message: result.error.message },
+          this.zone.run(() => {
+            this.router.navigate(['payment-status'], {
+              relativeTo: this.route,
+              queryParams: { redirect_status: 'failed', error_message: result.error.message },
+            });
           });
         } else {
           this.checkoutService
@@ -174,13 +181,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             .pipe(untilDestroyed(this))
             .subscribe({
               next: response => {
-                this.router.navigate(['payment-status'], {
-                  relativeTo: this.route,
-                  queryParams: {
-                    redirect_status: 'succeeded',
-                    tracking_number: response.orderTrackingNumber,
-                  },
+                this.zone.run(() => {
+                  this.router.navigate(['payment-status'], {
+                    relativeTo: this.route,
+                    queryParams: {
+                      redirect_status: 'succeeded',
+                      tracking_number: response.orderTrackingNumber,
+                    },
+                  });
                 });
+
                 this.cartService.resetCart();
               },
               error: err => {
@@ -188,9 +198,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               },
             });
         }
-        return noop;
+        return null;
       })
-      .catch(e => console.log(e));
+      .catch(e => alert(e));
     this.isLoading = false;
   }
 

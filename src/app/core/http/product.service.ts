@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from '../../../environments/environment.development';
 import { Product } from '../interfaces/product';
 import { ProductCategory } from '../interfaces/product-category';
 import { ParamMap } from '@angular/router';

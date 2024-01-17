@@ -15,7 +15,6 @@
         "createDefaultProgram": true
       },
       "plugins": [
-        "eslint-comments",
         "import",
         "optimize-regex",
         "promise",
@@ -26,7 +25,6 @@
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:eslint-comments/recommended",
         "plugin:import/warnings",
         "plugin:import/typescript",
         "plugin:optimize-regex/all",
@@ -108,7 +106,7 @@
         "max-lines-per-function": [
           "error",
           {
-            "max": 30
+            "max": 60
           }
         ],
         "max-params": [
