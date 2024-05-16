@@ -33,7 +33,7 @@
       </li>
     </ul>
     <div
-      class="nav-second grid grid-cols-2 text-modal-menu-second-nav-links-size font-semibold leading-snug pt-10 px-[20px] sm:px-[60px] lg:pt-[clamp(calc(0.0625rem*60),calc(80/14.4*1vw),calc(0.0625rem*80))] pb-[30px]">
+      class="nav-second grid grid-cols-2 gap-x-36 text-modal-menu-second-nav-links-size font-semibold leading-snug pt-10 px-[20px] sm:px-[60px] lg:pt-[clamp(calc(0.0625rem*60),calc(80/14.4*1vw),calc(0.0625rem*80))] pb-[30px]">
       <ul>
         <li>
           <a
@@ -76,7 +76,7 @@
           >
         </li>
       </ul>
-      <ul class="flex flex-col">
+      <ul class="flex flex-col ">
         <li>
           <a
             (click)="openCart()"
@@ -88,7 +88,7 @@
         <li>
           <a
             (click)="closeMenu()"
-            routerLink="/"
+            href="/{{localeToChangeLanguage}}/"
             class="hover:text-link-hover transition-[color] duration-300 ease-in-out-expo"
             ><span i18n >PL</span></a
           >

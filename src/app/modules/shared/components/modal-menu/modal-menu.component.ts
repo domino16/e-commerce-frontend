@@ -15,6 +15,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 })
 export class ModalMenuComponent{
   private readonly layoutService = inject(LayoutService)
+  localeToChangeLanguage: string = this.layoutService.localeToChangeLanguage;
 
 
   isMobile$ = this.layoutService.isMobile$

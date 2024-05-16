@@ -109,9 +109,11 @@ export class ShopPageComponent implements OnInit, AfterViewInit {
       const currentTime = Date.now();
       const elapsedTime = currentTime - this.startLoadingTime;
       if (elapsedTime >= minimumLoadTime) {
+        videoElement.play()
         this.onVideoLoaded();
       } else {
         setTimeout(() => {
+          videoElement.play()
           this.onVideoLoaded();
         }, minimumLoadTime - elapsedTime);
       }

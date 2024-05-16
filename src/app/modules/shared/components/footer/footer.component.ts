@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 export class FooterComponent {
   private readonly layoutService = inject(LayoutService)
   emailControl = new FormControl('', [Validators.required, Validators.email]);
+  localeToChangeLanguage: string = this.layoutService.localeToChangeLanguage;
 
   isSubscribe = false;
 

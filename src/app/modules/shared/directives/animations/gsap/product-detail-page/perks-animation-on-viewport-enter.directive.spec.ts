@@ -4,7 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 import { PerksAnimationOnViewportEnterDirective } from './perks-animation-on-viewport-enter.directive';
 import { ComponentFixture, TestBed}  from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { gsap } from 'gsap/dist/gsap'
+import { gsap } from 'gsap'
 
 @Component({
   standalone: true,

@@ -1,4 +1,3 @@
-
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
 import { Component, Inject, inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +10,7 @@ import {
   onMenuOpenAnimateNavLinksTrigger,
 } from 'src/app/animations/menu-animations';
 import { Store } from '@ngrx/store';
-import { selectCurrentRoute} from 'src/app/router.selectors';
+import { selectCurrentRoute } from 'src/app/router.selectors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -25,7 +24,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class HeaderComponent implements OnInit {
   private readonly layoutService = inject(LayoutService);
-  private readonly store = inject(Store); 
+  private readonly store = inject(Store);
 
   @Input() isStickyHeader: boolean = false;
 
@@ -33,13 +32,9 @@ export class HeaderComponent implements OnInit {
   isMenuTextWhite: boolean = false;
   isMobile$: Observable<boolean> = this.layoutService.isMobile$;
   isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
-  localeToChangeLanguage:string;
+  localeToChangeLanguage: string = this.layoutService.localeToChangeLanguage;
   //routes when header text color is white
   whiteRoutes = ['shop'];
-  
-  constructor(@Inject(LOCALE_ID) public locale: string) {
- locale === 'pl' ? this.localeToChangeLanguage = 'en_US' : this.localeToChangeLanguage = 'pl'
-  }
 
   ngOnInit(): void {
     combineLatest([this.isMenuOpen$, this.isMobile$, this.store.select(selectCurrentRoute)])
@@ -76,6 +71,4 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-
-
 }

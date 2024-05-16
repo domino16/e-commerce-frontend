@@ -4,11 +4,11 @@
   "newProjectRoot": "projects",
   "projects": {
     "e-commerce-app": {
+      "projectType": "application",
       "i18n": {
         "sourceLocale": "en-US",
-        "locales": { "pl": { "translation": "src/locale/messages.pl.xlf"} }
+        "locales": { "pl": { "translation": "src/locale/messages.pl.xlf" } }
       },
-      "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -38,7 +38,6 @@
             "scripts": []
           },
           "configurations": {
-            
             "production": {
               "budgets": [
                 {
@@ -68,10 +67,10 @@
                 }
               ]
             },
-            "en-US": { 
-              "localize": ["en-US"] 
+            "en-US": {
+              "localize": ["en-US"]
             },
-            "pl":{
+            "pl": {
               "localize": ["pl"]
             }
           },
@@ -89,7 +88,7 @@
             "en-US": {
               "browserTarget": "e-commerce-app:build:development,en-US"
             },
-            "pl":{
+            "pl": {
               "browserTarget": "e-commerce-app:build:development,pl"
             }
           },

@@ -21,7 +21,7 @@ const el = this.el.nativeElement
     // endTrigger:'.hasl',
     end: 'bottom top',
     scrub: 1,
-    markers: true,
+    markers: false,
   }})
 
   tl.to(el, {borderRadius: '0 0 80px 80px', duration:1})

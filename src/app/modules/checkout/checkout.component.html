@@ -4,7 +4,7 @@
 <div class="flex flex-col right-side w-full lg:w-1/2 px-10 overflow-y-auto">
   <div class="self-center lg:hidden">
     <p i18n class="text-secondary">Pay CupOfBean</p>
-    <p class="text-4xl">{{ totalPrice | currency:'USD' }}</p>
+    <p class="text-4xl">{{ totalPrice | currency: 'USD' }}</p>
   </div>
   <!-- saved recipient element -->
   <div *ngIf="purchase" class="flex flex-col mb-4">
@@ -33,7 +33,7 @@
     </div>
     <!-- customer form group -->
     <div formGroupName="customer">
-      <div class="mt-3"><label i18n >First Name</label></div>
+      <div class="mt-3"><label i18n>First Name</label></div>
 
       <input i18n-placeholder formControlName="firstName" type="text" placeholder="First Name" />
 
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div  class="mt-3"><label i18n>Last Name</label></div>
+      <div class="mt-3"><label i18n>Last Name</label></div>
 
       <input i18n-placeholder formControlName="lastName" type="text" placeholder="Last Name" />
 
@@ -63,7 +63,7 @@
 
       <div class="mt-3"><label>E-mail</label></div>
 
-      <input formControlName="email" type="text" placeholder="E-mail"/>
+      <input formControlName="email" type="text" placeholder="E-mail" />
 
       <div *ngIf="email?.invalid && email?.touched" class="">
         <div i18n class="text-color-danger" *ngIf="email?.errors?.['required']">
@@ -78,7 +78,7 @@
 
     <!-- shipping Address -->
     <div formGroupName="shippingAddress" class="">
-      <div  class="mt-3"><label i18n>Country</label></div>
+      <div class="mt-3"><label i18n>Country</label></div>
       <select formControlName="country">
         <option *ngFor="let country of countries$ | async" [ngValue]="country.key">
           {{ country.value }}
@@ -93,7 +93,7 @@
 
       <div class="mt-3"><label i18n>Street</label></div>
 
-      <input i18n-placeholder formControlName="street" type="text" placeholder="Street"/>
+      <input i18n-placeholder formControlName="street" type="text" placeholder="Street" />
 
       <div
         *ngIf="shippingAddressStreet?.invalid && shippingAddressStreet?.touched"
@@ -106,7 +106,7 @@
         </div>
       </div>
 
-      <div  class="mt-3"><label i18n>City</label></div>
+      <div class="mt-3"><label i18n>City</label></div>
 
       <input i18n-placeholder formControlName="city" type="text" placeholder="City" />
 
@@ -121,7 +121,7 @@
         </div>
       </div>
 
-      <div  class="mt-3"><label i18n>State</label></div>
+      <div class="mt-3"><label i18n>State</label></div>
 
       <select formControlName="state">
         <option *ngFor="let state of states$ | async" [ngValue]="state">
@@ -137,9 +137,9 @@
         </div>
       </div>
 
-      <div  class="mt-3"><label i18n>Zip Code</label></div>
+      <div class="mt-3"><label i18n>Zip Code</label></div>
 
-      <input i18n-placeholder formControlName="zipCode" type="text" placeholder="Zip Code"/>
+      <input i18n-placeholder formControlName="zipCode" type="text" placeholder="Zip Code" />
 
       <div
         *ngIf="shippingAddressZipCode?.invalid && shippingAddressZipCode?.touched"
@@ -163,8 +163,8 @@
   <!--stripe payment-element -->
   <ng-container *ngIf="purchase">
     <p i18n class="p-4 text-xl font-bold border-secondary border-b-[1px] mb-8">Payment</p>
+    <div *ngIf="isStripeLoading | async" class="relative h-24"><app-loading-spinner></app-loading-spinner></div>
     <div id="payment-element"></div>
-
     <div class="w-full flex justify-center">
       <button i18n class="px-8 py-4 my-4 bg-black rounded-[30px] text-white" (click)="onSubmit()">
         Purchase

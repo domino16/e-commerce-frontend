@@ -1,4 +1,4 @@
-import { Inject, Injectable,PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID, PLATFORM_ID } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
@@ -7,7 +7,6 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class LayoutService {
- 
   private isMenuOpenSubject = new BehaviorSubject<boolean>(false);
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
   private isMobileSubject = new BehaviorSubject<boolean>(false);
@@ -15,14 +14,22 @@ export class LayoutService {
 
   isMenuOpen$: Observable<boolean> = this.isMenuOpenSubject.asObservable();
   isCartOpen$: Observable<boolean> = this.isCartOpenSubject.asObservable();
-  isMobile$: Observable<boolean> = this.isMobileSubject.asObservable(); 
+  isMobile$: Observable<boolean> = this.isMobileSubject.asObservable();
   isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
+  localeToChangeLanguage: 'en-US' | 'pl';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(LOCALE_ID) public locale: string,
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       this.checkResize();
       window.addEventListener('resize', () => this.checkResize());
     }
+
+    locale === 'pl'
+      ? (this.localeToChangeLanguage = 'en-US')
+      : (this.localeToChangeLanguage = 'pl');
   }
 
   openMenu() {
@@ -66,13 +73,13 @@ export class LayoutService {
     }
   }
 
-  loadingStart(){
-this.isLoadingSubject.next(true);
-this.addOverflowHidden()
+  loadingStart() {
+    this.isLoadingSubject.next(true);
+    this.addOverflowHidden();
   }
 
-  loadingStop(){
+  loadingStop() {
     this.isLoadingSubject.next(false);
-    this.removeOverflowHidden()
+    this.removeOverflowHidden();
   }
 }

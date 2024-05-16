@@ -17,7 +17,7 @@ import { Stripe, StripeElements, loadStripe } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment.development';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.component';
-import { Observable, catchError, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 import { Purchase } from 'src/app/core/interfaces/purchase';
 import { Address } from 'src/app/core/interfaces/address';
 import { Customer } from 'src/app/core/interfaces/customer';
@@ -25,13 +25,20 @@ import { Order } from 'src/app/core/interfaces/order';
 import { OrderItem } from 'src/app/core/interfaces/order-item';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { LayoutService } from 'src/app/core/services/layout.service';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 @UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CheckoutSummaryComponent, RouterOutlet],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CheckoutSummaryComponent,
+    RouterOutlet,
+    LoadingSpinnerComponent,
+  ],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
 })
@@ -61,6 +68,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   purchase: Purchase | undefined;
   defaultLocale: 'pl' | 'en';
+  isStripeLoading = new BehaviorSubject<boolean>(false);
 
   constructor(@Inject(LOCALE_ID) public locale: string) {
     locale === 'pl' ? (this.defaultLocale = 'pl') : (this.defaultLocale = 'en');
@@ -85,6 +93,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   setupStripeForm() {
+    this.isStripeLoading.next(true);
     this.paymentInfo = {
       amount: Math.round(this.totalPrice * 100),
       currency: 'pln',
@@ -99,6 +108,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         });
         const paymentElement = this.elements.create('payment');
         paymentElement.mount('#payment-element');
+        this.isStripeLoading.next(false);
       });
   }
 
