@@ -36,8 +36,7 @@ this.scrollTop();
   scrollTop() {
     window.scrollTo({ top: 0 });
   }
-
-  // eslint-disable-next-line max-params
+  
   addToCart(id: string, name: string, imageUrl: string, unitPrice: number, quantity: number): void {
     const item: CartItem = { id, name, imageUrl, unitPrice, quantity };
     this.cartService.addToCart(item);
