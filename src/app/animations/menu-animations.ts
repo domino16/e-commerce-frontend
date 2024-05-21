@@ -25,7 +25,6 @@ const timingDelay = duration + ' ' + '200ms' + ' ' + ease;
 export const menuAnimationStateTrigger = trigger('openCloseMenu', [
   transition(':enter', [
     //hide elements ########################################################################
-    //TODO: animate height on mobile screen
     query(nav, style({ width: 0 }), { optional: true }), //left side menu
     query(navMobile, style({ height: 0 }), { optional: true }), //left side menu
     query(
